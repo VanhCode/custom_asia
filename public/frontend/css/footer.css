@@ -1,0 +1,200 @@
+footer{
+ background: linear-gradient(0deg, rgba(51,51,51,1) 27%, rgba(92,92,92,1) 76%);
+    padding: 40px 0px 10px 0px;
+}
+.tags ul li a{
+    background-color: #6F6F6F;
+    display: block;
+    padding: 1px 8px;
+    border-radius: 3px;
+    margin-right: 3px;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: #D7D4D4;
+    font-weight: 400;
+}
+.tags{
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+}
+
+.footer-infomation li{
+    font-size: 14px;
+    color: #b3b3b3;
+    font-weight: 300;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+.footer-infomation li span{
+    display: block;
+    margin-bottom: 20px;
+    font-size: 17px;
+    color: #868686;
+}
+.footer-infomation li a{
+    background-color: #69695d;
+    display: block;
+    padding: 2px 10px 3px 10px;
+    border-radius: 14px;
+    margin-right: 3px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: white;
+    font-weight: 300;
+    text-align: center;;
+}
+
+.footer-signup{
+    margin-bottom: 25px;
+	margin-top: 10px;
+}
+.footer-signup-body{
+  background-color: #353535;
+}
+.footer-signup-body h2{
+    color: #a6a1a5;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 13px;
+}
+.footer-signup-body form input{
+    background-color: transparent;
+    border-radius: 5px;
+    border: 2px solid #444;
+    padding: 5px 10px;
+    height: 40px;
+    color: wheat;
+    margin-right: 12px;
+}
+.footer-signup-body form input::placeholder{
+    color: #a6a1a5;
+}
+.footer-signup-body form button{
+    height: 40px;
+    padding: 0px 25px;
+    background-color: #444;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+}
+
+footer .footer-social ul li a {
+    height: 32px;
+    width: 32px;
+    line-height: 34px;
+    border-radius: 50px;
+    color: white;
+    text-align: center;
+    display: block;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin-bottom: 15px;
+    background-color: rgba(255,255,255,.5);
+}
+footer .footer-social ul li a svg{
+    height: 16px;
+    fill: #646158;
+}
+.footer-social-info svg{
+    height: 25px;
+    fill: #9a9a9a;
+    margin-right: 10px;
+}
+.footer-social-info span{
+    font-size: 23px;
+    font-weight: 600;
+    color: #9a9a9a;
+}
+.footer-social{
+    margin-top: 5px;
+}
+.address-footer h3{
+    color: #e1e1e1;
+    font-weight: 300;
+    font-size: 23px;
+    margin-bottom: 18px;
+}
+.address-footer p{
+    font-size: 13px;
+    color: #e1e1e1;
+    padding-bottom: 20px;
+}
+.address-footer ul li a svg{
+    height: 14px;
+    fill: #e1e1e1;
+    margin-right: 5px;
+}
+.address-footer ul li a{
+    font-size: 13px;
+    color: #e1e1e1;
+}
+.address-footer ul{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.address-footer ul li{
+    padding-bottom: 20px;
+}
+.address-footer ul li:nth-child(1){
+    width: 50%;
+}
+.address-footer ul li:nth-child(2){
+    width: 50%;
+}
+.address-footer ul li:nth-child(3){
+    width: 100%;
+}
+
+.coppyright{
+    background-color: #353535;
+    padding: 16px 0px 14px 0px;
+    border-top: 1px solid #666;
+}
+.coppyright-text p{
+    color: #d9d5d5;
+    font-size: 13px;
+    font-weight: 300;
+    padding-bottom: 0px;
+}
+.coppyright-text p a{
+    color: white;
+    font-weight: 500; 
+}
+@media (max-width:990px){
+.footer-social-info span {
+    font-size: 14px;
+}
+.footer-signup-body form button {
+    padding: 0px 20px;
+}
+
+.footer-signup-body h2 {
+    font-size: 17px;
+}
+.tags {
+    margin-bottom: 0px;
+}
+
+}
+@media (max-width:586px){
+    .footer-infomation ul{
+        margin: 0px -5px;
+    }
+    .footer-infomation ul li {
+        width: 50%;
+        padding: 0px 5px;
+    }
+    .footer-signup-body form input {
+        width: 100% !important;
+        flex: unset;
+        margin-bottom: 8px;
+        margin-right: 0px;
+      }
+      .footer-signup-body form button {
+        width: 100%;
+      }
+}

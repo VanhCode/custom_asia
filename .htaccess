@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+RewriteCond %{HTTP_HOST} ^www.quattranitalia.vn
+RewriteRule ^.*$ https://quattranitalia.vn%{REQUEST_URI} [R=301,L]
+
+Redirect 301 /phong-cach-thiet-ke https://quattranitalia.vn
+Redirect 301 /khong-gian-lap-quat https://quattranitalia.vn
+Redirect 301 /collections/all https://quattranitalia.vn/san-pham
+Redirect 301 /quat-tran-italia-fy555 https://quattranitalia.vn/quat-tran-den-trang-tri-giau-canh-fy555
+Redirect 301 /quat-tran-italia-fy586 https://quattranitalia.vn/quat-tran-trang-tri-5-canh-go-co-den-fy586
+Redirect 301 /quat-tran-italia-fy509-gold https://quattranitalia.vn/quat-tran-5-canh-co-dien-fy509-gold
+Redirect 301 /da-nang https://quattranitalia.vn
+Redirect 301 /quat-tran-la-co https://quattranitalia.vn
+Redirect 301 /quat-tran-italia-fy520 https://quattranitalia.vn/quat-tran-5-canh-nhua-abs-fy520
+Redirect 301 /quat-tran-italia-fy510-ob https://quattranitalia.vn/quat-tran-trang-tri-3-canh-go-co-den-FY510-ob
+Redirect 301 /quat-tran-italia-fy538 https://quattranitalia.vn/quat-tran-trang-tri-khong-den-5-canh-go-fy586-kd
+Redirect 301 /quat-tran-italia-fy963 https://quattranitalia.vn/quat-tran-ma-vang-24k-canh-go-khong-den-fy963-kd
+Redirect 301 /dong-hoi https://quattranitalia.vn
+Redirect 301 /bao-chi-noi-ve-chung-toi https://quattranitalia.vn/bao-chi-noi-gi-ve-chung-toi
+Redirect 301 /quat-tran-italia-fy968 https://quattranitalia.vn/quat-tran-co-den-5-canh-ma-vang-9999-fy968
+Redirect 301 /chinh-sach-bao-mat-thong-tin https://quattranitalia.vn/chinh-sach-bao-mat
+Redirect 301 /phu-kien-quat-tran-2 https://quattranitalia.vn/phu-kien-quat-tran
+Redirect 301 /quat-tran-phong-an-va-bep https://quattranitalia.vn/quat-tran-phong-bep

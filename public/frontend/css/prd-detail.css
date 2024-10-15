@@ -1,0 +1,471 @@
+.tour-detail-slide {
+  padding-top: 15PX;
+  background-color: #f9f4f0;
+}
+
+.tour-detail-slide .slide-3 .tour-detail-slide-box img {
+  height: 400px;
+  width: 100%;
+}
+
+.tour-detail-top {
+  padding: 30px 0px 25px 0px;
+  background-color: #f9f4f0;
+}
+.tour-detail-top ul{
+  flex-wrap: wrap;
+}
+.tour-detail-title {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.tour-detail-top ul li {
+  color: #0f0f0f;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 0px 10px;
+  padding-left: 10px;
+  position: relative;
+}
+
+.tour-detail-top ul li:not(:last-child)::before {
+  content: " ";
+  position: absolute;
+  right: 0;
+  height: 55%;
+  width: 1px;
+  background-color: #989994;
+  top: 23%;
+}
+
+.tour-detail-top ul li:first-child {
+  padding-left: 0px;
+}
+
+.tour-detail-body {
+  padding-top: 50px;
+}
+
+.tour-detail-content_title {
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+.tour-detail-content_box {
+  margin-bottom: 30px;
+}
+
+.tour-detail-content_box .map iframe {
+  width: 100%;
+}
+
+.faqs-container {
+
+  padding-left: 40px;
+  position: relative;
+}
+
+.faqs-container:not(:last-child)::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #d3d2da;
+  top: 30px;
+}
+
+.faqs-circle {
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  border: 2px solid #d3d2da;
+  padding: 4px;
+  left: -15px;
+  top: -1px;
+  background-color: white;
+}
+
+.faqs-circle-item {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+
+}
+
+.faqs-container.active .faqs-circle-item {
+  background-color: #d67b4c;
+}
+
+.faqs-top {
+  /*! padding-top: 10px; */
+}
+
+.faqs-content {
+  border-bottom: 1px solid #d3d2da;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.faqs-content .desc {
+  display: none;
+}
+
+.faqs-content .desc p {
+  padding-bottom: 0px;
+  margin-top: 5px;
+}
+
+.faqs-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.faqs-icon svg {
+  height: 16px;
+  fill: black;
+}
+
+.faqs {
+  margin-left: 15px;
+}
+
+
+.tour-detail-download h2 {
+  font-size: 20px;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.tour-detail-download span {
+  color: #6e6e6e;
+}
+
+.tour-detail-download a img {
+  height: 68px;
+}
+
+.faqs-container.faqs-container--sc::before {
+  content: unset;
+}
+
+.faqs-container.faqs-container--sc {
+  padding-left: 0px;
+}
+
+.faqs--sc {
+  margin-left: 0px;
+}
+
+
+.form-book {
+  overflow: hidden;
+  border-radius: 10px;
+  /* box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.31); */
+  border: 1px solid #00000017;
+	position: sticky;
+  top: 100px;
+}
+
+.form-book-top {
+  background-color: #f9f4f0;
+  padding: 30px 25px 20px 25px;
+}
+
+.price-right {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.form-book-top .price-right span {
+  font-size: 11px;
+  color: #8b8b8b;
+  line-height: 1.0;
+}
+
+.price-left {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.form-book-top h2 {
+  font-size: 20px;
+  margin: 15px 0px 5px 0px;
+}
+
+.form-book-top span {
+  font-size: 14px;
+  color: #8b8b8b;
+}
+
+.form-book-body {
+  padding: 30px 25px;
+}
+
+.form-book-body .clm,
+.form-book-body .row {
+  --gutter: 7px;
+}
+
+.form-book-body input,
+.form-book-body textarea,
+.form-book-body select {
+  background-color: transparent;
+  border: 0;
+  padding: 12px 5px;
+  color: #a1a398;
+  font-size: 15px;
+  width: 100%;
+  opacity: 1;
+  border-bottom: 1px solid #cacaca;
+  height: 46px;
+}
+
+.form-book-body input::placeholder,
+.form-book-body textarea::placeholder {
+  color: #a1a398;
+  font-size: 15px;
+  opacity: 1;
+}
+
+.form-book-bottom {
+  padding: 0px 25px 30px 25px;
+}
+
+.form-book-bottom h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.faqs-icon svg,
+.btn-expand{
+	cursor: pointer;
+}
+.form-book-bottom span {
+  font-size: 14px;
+  color: #8b8b8b;
+  line-height: 1.4;
+  display: block;
+}
+
+.form-book-bottom button {
+  background-color: #d67b4c;
+  width: 100%;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 15px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.btn-expand .close {
+  display: none;
+}
+
+.btn-expand.active .expand {
+  display: none;
+}
+
+.btn-expand.active .close {
+  display: block;
+}
+
+.scout-component__modal {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, .4);
+    z-index: 9;
+    display: none;
+}
+
+.scout-component__modal-dialog {
+    display: -webkit-flex;
+    display: flex;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    box-shadow: 0 24px 32px rgba(3, 54, 63, .08), 0 16px 24px rgba(3, 54, 63, .08), 0 8px 16px rgba(3, 54, 63, .04), 0 4px 8px rgba(3, 54, 63, .04), 0 2px 4px rgba(3, 54, 63, .02), 0 1px 2px rgba(3, 54, 63, .02), 0 -1px 2px rgba(3, 54, 63, .02);
+    overflow: hidden;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+@media (min-width: 768px) {
+    .scout-component__modal-dialog {
+        margin: 32px auto;
+        height: auto;
+        max-height: calc(100% - 64px);
+        border-radius: 11px;
+        top: calc(50% - 32px);
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (min-width: 768px) {
+    .scout-component__modal-dialog {
+        max-width: 752px;
+    }
+}
+
+.scout-component__modal-top {
+    position: relative;
+    padding: 16px 16px 2px 24px;
+    z-index: 2;
+}
+
+.scout-component__modal-navigation {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    position: relative;
+    height: 24px;
+    width: 100%;
+    margin-bottom: 8px;
+    justify-content: right;
+}
+
+.scout-component__modal-heading {
+    font-size: 23px;
+    line-height: 32px;
+    letter-spacing: .37px;
+    margin: 0;
+    padding: 0 4px 0 0;
+    width: 100%;
+    color: #323637;
+}
+
+@media (min-width: 768px) {
+    .scout-component__modal-heading {
+        font-size: 25px;
+        line-height: 35px;
+        letter-spacing: -.54px;
+    }
+}
+
+.scout-component__modal-content {
+    position: relative;
+    -webkit-flex: 1 1 100%;
+    flex: 1 1 100%;
+    overflow: auto;
+    z-index: 0;
+    padding: 4px 24px 24px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+@media (min-width: 768px) {
+    .scout-component__modal-content {
+        background: linear-gradient(#fff 33%, transparent), linear-gradient(transparent, #fff 66%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(44, 62, 80, .25), transparent), radial-gradient(farthest-side at 50% 100%, rgba(44, 62, 80, .25), transparent) 0 100%;
+        background-color: rgba(0, 0, 0, 0);
+        background-repeat: repeat, repeat, repeat, repeat;
+        background-attachment: scroll, scroll, scroll, scroll;
+        background-size: auto, auto, auto, auto;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-attachment: local, local, scroll, scroll;
+        background-size: 100% 18px, 100% 18px, 100% 8px, 100% 8px;
+    }
+}
+
+.scout-component__modal-content {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.brochure-modal__text {
+    margin-bottom: 28px;
+    letter-spacing: .3px;
+    padding-bottom: 0px;
+    font-size: 15px;
+}
+
+.scout-component__modal-content {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.scout-element__input {
+    position: relative;
+    border: 1px solid #bbc0c2;
+    border-radius: 9px;
+}
+
+.scout-element__input-label {
+    font-size: 14px;
+    line-height: 22px;
+    position: absolute;
+    font-weight: 700;
+    padding: 0 4px;
+    top: -50%;
+    -webkit-transform: translateY(50%);
+    transform: translateY(50%);
+    left: 12px;
+    background-color: #fff;
+}
+
+.scout-element__input-field {
+    padding: 12px 16px;
+    min-height: 48px;
+    width: 100%;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+.brochure-modal__flex-wrap {
+    display: flex;
+    justify-content: right;
+    padding-right: 22px;
+}
+
+.brochure-modal__flex-wrap a {
+    color: white;
+    background-color: #d67b4c;
+    font-size: 16px;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    display: block;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+.scout-component__modal-navigation-close {
+    padding: 0px;
+    background-color: transparent;
+}
+
+.scout-component__modal-navigation-close svg {
+    height: 19px;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+}
+#map2 {
+  height: 500px;
+  width: 50%;
+}
+@media (max-width: 586px) {
+  .faqs-container {
+    padding-left: 25px;
+  }
+  .faqs-title {
+    font-size: 15px;
+  }
+  .tour-detail-body {
+    padding-top: 25px;
+  }
+}

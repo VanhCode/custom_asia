@@ -1,0 +1,258 @@
+:root {
+    --primary-color: #2a3f54;
+    --hover-color: #405367;
+}
+
+.custom-btn {
+    font-size: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-btn.yellow {
+    background-color: rgb(227, 227, 8);
+    color: black;
+}
+
+.custom-btn.yellow:hover {
+    background-color: yellow;
+    color: black;
+}
+
+.custom-btn:hover {
+    background-color: var(--hover-color);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+.custom-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-btn.create::before {
+    content: "+";
+    margin-right: 5px;
+}
+
+/* Rounded corners for the first and last columns */
+tbody tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+
+tbody tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}
+
+tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+.number-input {
+    width: 80px; /* Độ rộng nhỏ gọn */
+    padding: 6px 10px; /* Padding cho input */
+    border: 2px solid var(--primary-color); /* Đường viền */
+    border-radius: 5px; /* Bo góc */
+    font-size: 16px; /* Kích thước chữ */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.number-input:focus {
+    border-color: #182e34; /* Đổi màu viền khi focus */
+    box-shadow: 0 0 5px rgba(3, 32, 40, 0.5); /* Hiệu ứng bóng */
+    outline: none; /* Xóa outline mặc định */
+}
+
+.change-active {
+    margin-bottom: 15px; /* Khoảng cách dưới nút */
+    font-size: 14px; /* Kích thước chữ */
+    width: 80px;
+    transition: background-color 0.3s, color 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.change-active.active {
+    background-color: #5cb85c !important; /* Màu nền khi nút active */
+    border-color: #5cb85c !important;
+    color: white; /* Màu chữ khi active */
+}
+
+.form-container {
+    background-color: white;
+    /* Màu nền cho form */
+    padding: 30px;
+    /* Padding cho form */
+    border-radius: 8px;
+    /* Bo góc */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Bóng đổ cho form */
+    max-width: 600px;
+    /* Độ rộng tối đa của form */
+    margin: 50px auto;
+    /* Canh giữa form */
+}
+
+.form-control {
+    border: 2px solid #ced4da; /* Đường viền cho input */
+    border-radius: 5px; /* Bo góc cho input */
+    padding: 15px 10px; /* Padding cho input */
+    font-size: 16px; /* Kích thước chữ cho input */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Hiệu ứng chuyển tiếp */
+    background-color: #fdfdfd; /* Màu nền cho input */
+}
+
+.form-control:focus {
+    border-color: #aaacad; /* Đổi màu viền khi focus */
+    box-shadow: 0 0 5px rgba(51, 69, 74, 0.5); /* Hiệu ứng bóng khi focus */
+    outline: none; /* Xóa outline mặc định */
+}
+
+.form-control::placeholder {
+    color: #a8a8a8; /* Màu chữ cho placeholder */
+    opacity: 1; /* Đảm bảo placeholder không bị mờ */
+}
+
+.form-title {
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+    text-align: center; /* Canh giữa tiêu đề */
+    font-size: 24px; /* Kích thước chữ cho tiêu đề */
+    color: #333; /* Màu chữ cho tiêu đề */
+}
+
+.no-data-message {
+    color: #ff0000;
+    /* Màu chữ đỏ */
+    background-color: #f8d7da;
+    /* Màu nền nhạt */
+    border: 1px solid #f5c6cb;
+    /* Viền màu tương tự nền */
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+/* Overlay */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+}
+
+/* Modal container */
+.custom-modal {
+    background-color: white;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Modal header */
+.custom-modal-header {
+    padding: 15px;
+    background-color: #00b327;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Modal title */
+.custom-modal-title {
+    font-size: 20px;
+    margin: 0;
+}
+
+/* Close button */
+.custom-close-btn {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Modal body */
+.custom-modal-body {
+    padding: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Modal footer */
+.custom-modal-footer {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #f1f1f1;
+}
+
+/* Buttons */
+.custom-btn {
+    padding: 8px 16px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-btn-confirm {
+    background-color: #00b327;
+    color: white;
+}
+
+.custom-btn-cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Show modal */
+.custom-modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Button to trigger modal */
+.trigger-modal-btn {
+    padding: 5px 10px;
+    background-color: #00b327;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.trigger-modal-btn:hover {
+    background-color: #00b327;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}

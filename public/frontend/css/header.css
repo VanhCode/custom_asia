@@ -1,0 +1,315 @@
+.list-bar {
+    margin-right: 30px;
+}
+
+.list-bar .bar {
+    width: 28px;
+    height: 2px;
+    background: #000;
+    margin: 6px 0px;
+}
+
+header.header-fix-mobile.header-bg {
+    position: fixed;
+}
+
+header {
+    position: relative;
+    z-index: 999;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* position: fixed; */
+    left: 0;
+    right: 0;
+    top: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.header-menu nav ul li {
+    position: relative;
+
+}
+
+.header-menu nav ul li a {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 26px 20px;
+    display: block;
+    color: black;
+}
+
+.header-menu nav ul li a svg {
+    fill: black;
+    height: 11px;
+    margin-left: 5px;
+}
+
+.header-menu nav ul li ul li a:hover {
+    color: rgb(244, 165, 142);
+}
+
+.header-menu nav ul li ul {
+    position: absolute;
+    top: 100%;
+    min-width: 240px;
+    padding: 3px 0px;
+    background-color: #3c3a3a;
+    display: none;
+}
+
+.header-menu nav ul li:hover ul {
+    display: block;
+}
+
+.header-menu nav ul li ul li a {
+    font-size: 14px;
+    text-transform: unset;
+    color: white;
+    padding: 5px 10px;
+	font-weight: 400;
+}
+
+.header-menu nav ul li ul li:not(:last-child) {
+    border-bottom: 1px solid #828282;
+}
+
+
+.hotline {
+    font-size: 16px;
+    margin-left: 15px;
+    font-weight: 600;
+}
+
+.hotline svg {
+    height: 26px;
+    fill: #20DC56;
+    width: 26px;
+}
+
+.header-btn-plan .btn-plan {
+    color: white;
+    background-color: #d67b4c;
+    font-size: 17px;
+    padding: 8px 24px;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.header-btn-plan .btn-plan span {
+    color: white;
+}
+
+.header-btn-plan .btn-plan svg {
+    display: none;
+}
+
+
+.menu_fix_mobile {
+    position: fixed;
+    z-index: 999999;
+    height: 100%;
+    width: 430px;
+    top: 0;
+    left: 0;
+    background: #fff;
+    transition: all 200ms linear 0s;
+    transform: translateX(-100%);
+    padding: 20px;
+    background-image: url("https://travel.nicdark.com/city-tour/wp-content/uploads/sites/3/2023/04/bg-10.png");
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 255px auto;
+}
+
+.menu_fix_mobile.main-menu-show {
+    transform: translateX(0%);
+}
+
+.menu_fix_mobile .close-menu {
+    overflow: hidden;
+    border-bottom: 1px solid #fff;
+    /*! position: relative; */
+}
+
+.close-menu {
+    padding-bottom: 5px;
+}
+
+.menu_fix_mobile .close-menu>a {
+    float: right;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.close-menu a svg {
+    color: #222;
+    height: 16px;
+}
+
+.close-menu span {
+    font-size: 14px;
+    color: #222;
+    font-weight: 600;
+}
+
+.menu_fix_mobile ul {
+    margin: 0;
+    list-style: none;
+}
+
+.menu_fix_mobile ul li {
+    float: left;
+    position: relative;
+    margin: 0;
+    transition: 0.4s;
+    width: 100%;
+    /* border-bottom: 1px solid #cdcdcd9c; */
+}
+
+.menu-mobile-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-c2-mobile ul li {
+    border-bottom: 1px solid #cdcdcd9c;
+    padding-left: 10px;
+}
+
+.menu_fix_mobile ul li a {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 0px;
+    color: #222;
+    display: inline-block;
+    width: 100%;
+    /* border-bottom: 1px solid #cdcdcd9c; */
+    line-height: normal;
+    -moz-transition: all .5s ease 0s;
+    -o-transition: all .5s ease 0s;
+    -webkit-transition: all .5s ease 0s;
+    transition: all .5s ease 0s;
+    text-transform: uppercase;
+}
+
+.menu-c2-mobile {
+    display: none;
+}
+
+.menu-c2-mobile.active-2 {
+    display: block;
+}
+
+.list-bar--mobile {
+    display: none;
+}
+
+.menu-mobile-1 span {
+    width: 40px;
+    text-align: center;
+    padding-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+}
+
+.menu-mobile-1 span svg {
+    height: 15px;
+}
+
+.menu-c2-mobile.active-2 {
+    background-color: #fff;
+    display: block;
+}
+@media (max-width: 1400px) {
+    .header-menu nav ul li a {
+        padding: 26px 12px;
+    }
+}
+@media (max-width: 1350px) {
+    .list-bar {
+        margin-right: 15px;
+    }
+    .header-menu {
+        flex: 1;
+        justify-content: center;
+    }
+    .header-menu nav ul li a{
+        font-size: 14px;
+        padding: 26px 10px;
+    }
+    .header-btn-plan .btn-plan {
+        font-size: 15px;
+        padding: 8px 10px;
+    }
+    .header-logo a img{
+        height: 54px;
+    }
+}
+@media (max-width: 1200px) {
+    header.header-fix-mobile.header-bg {
+        position: fixed;
+    }
+
+    header {
+        background-color: rgb(0, 0, 0);
+        position: unset;
+    }
+
+    .list-bar--mobile {
+        display: block;
+        flex: 1;
+        margin-right: 0px;
+    }
+
+    .list-bar--desktop {
+        display: none;
+    }
+
+    .list-bar .bar {
+        background: #000;
+    }
+
+    .header-menu {
+        display: none;
+    }
+
+    .header-btn-plan {
+        flex: 1;
+        display: flex;
+        justify-content: right;
+    }
+
+    .header-btn-plan .btn-plan {
+        display: flex;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+    }
+
+    .header-btn-plan .btn-plan span {
+        display: none;
+    }
+
+    .header-btn-plan .btn-plan svg {
+        display: block;
+        height: 23px;
+        fill: #504c4c;
+    }
+    .menu_fix_mobile {
+        width: 100%;
+    }
+    
+}
