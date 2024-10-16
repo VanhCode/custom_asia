@@ -10,6 +10,14 @@ document.getElementById('date_start').setAttribute('min', today);
 const listTourDay = document.getElementById('list-tour-day')
 const listTourDayContent = document.getElementById('list-tour-day-content')
 
+listTourDay.onclick = function (event) {
+    const target = event.target
+    if (target.classList.contains('day-box')) {
+        const listDayContent = document.getElementById(target.dataset.target)
+        listDayContent.classList.toggle('d-none')
+    }
+}
+
 let dayNumber = 0;
 let dateStart = new Date().toISOString().split('T')[0];
 
@@ -63,9 +71,10 @@ function generateListDay(listDay, dayNumber, add = null, day = null) {
     let listDayContentHtml = '';
     const random = Math.floor(Math.random() * 10000);
     for (let i = 0; i < dayNumber; i++) {
+        const dayNumberCount = day ? day : i + 1
         listDayHtml += `
-        <li class="day-box" data-target="day-box-${i + 1}-${random}">
-                            <span>Day ${day ? day : i + 1}</span>
+        <li class="day-box" data-target="day-box-${i + 1}-${random}" data-date="${listDay[i]}" data-day="${dayNumberCount}">
+                            <span>Day ${dayNumberCount}</span>
                             [${listDay[i]}]
                         </li>
         `
@@ -77,12 +86,12 @@ function generateListDay(listDay, dayNumber, add = null, day = null) {
     }
     const listIdFileManager = []
     for (let i = 0; i < dayNumber; i++) {
-
+        const dayNumberCount = day ? day : i + 1
         let count = 1;
         listDayContentHtml += `
         <li class="wrap-list-option-ad" data-target="day-box-${i + 1}-${random}">
-                                        <span>Day ${day ? day : i + 1}</span>
-                                        <input type="hidden" name="day_order[]" value="${day ? day : i + 1}"/>
+                                        <span>Day ${dayNumberCount}</span>
+                                        <input type="hidden" name="day_order[]" value="${dayNumberCount}"/>
                                           <input type="hidden" name="day_time[]" value="${listDay[i]}"/>
                                   [${listDay[i]}]
                                    <input type="text" class="w-100" value="" name="day_title[]"/>
@@ -140,7 +149,7 @@ function generateListDay(listDay, dayNumber, add = null, day = null) {
 
                                             <thead>
                                                 <tr>
-                                                    <th style="width: 45px;" class="btn-add-option" data-day="${day ? day : i + 1}">+</th>
+                                                    <th style="width: 45px;" class="btn-add-option" data-day="${dayNumberCount}">+</th>
                                                     <th class="tt-up">Gói giá dịch vụ cho cả tour</th>
                                                     <th class="tt-up">Gói giá dịch vụ cho cả tour</th>
                                                     <th class="ta-center tt-up">Tên gói</th>
@@ -166,155 +175,316 @@ function generateListDay(listDay, dayNumber, add = null, day = null) {
         handleFileManager(item)
     })
 
-    const listDayBox = document.querySelectorAll('.day-box')
-    listDayBox.forEach(item => {
-        item.addEventListener('click', function () {
-            const listDayContent = document.getElementById(this.dataset.target)
-            listDayContent.classList.toggle('d-none')
-        })
-    })
+    // const listDayBox = document.querySelectorAll('.day-box')
+    // listDayBox.forEach(item => {
+    //     item.addEventListener('click', function () {
+    //         const listDayContent = document.getElementById(this.dataset.target)
+    //         listDayContent.classList.toggle('d-none')
+    //     })
+    // })
 
     // Xử lý chọn dịch vụ 
     // const serviceTour = @json($serviceTour);
-    document.addEventListener('click', function (event) {
-        const random = Math.floor(Math.random() * 10000000);
-        if (event.target.classList.contains('btn-add-option')) {
-            const tableServiceTBody = event.target.closest('table').querySelector('tbody');
-            let newRow = document.createElement('tr');
-            newRow.innerHTML = `
-        <td class="ta-center remove-btn " data-remove="service-all-price-${random}" style="cursor: pointer">-</td>
-        <td>
-            <select class="my-select select2-${random}" style="width: 100%;" name="day_service[${event.target.dataset.day}][]">
-                <option value=""></option>
-                ${serviceTour.map(item => `<option value="${item.id}">${item.name}</option>`).join('')}
-            </select>
-        </td>
-        <td class="ta-center service-all-2" >
-            <select class="my-select select2-child-${random}" style="width: 100%;" name="day_service_child[${event.target.dataset.day}][]">
-                <option value=""></option>
-            </select>
-        </td>
-        <td class="ta-center">
-            <select class="my-select select2-child-2-${random}" style="width: 100%;" name="day_service_option[${event.target.dataset.day}][]">
-                <option value=""></option>
-            </select>
-        </td>
-        <td class="ta-center service-price service-all-price-${random}" data-price="0">---</td>`;
-            tableServiceTBody.appendChild(newRow);
+    // document.addEventListener('click', function (event) {
+    //     const random = Math.floor(Math.random() * 10000000);
+    //     if (event.target.classList.contains('btn-add-option')) {
+    //         const tableServiceTBody = event.target.closest('table').querySelector('tbody');
+    //         let newRow = document.createElement('tr');
+    //         newRow.innerHTML = `
+    //     <td class="ta-center remove-btn " data-remove="service-all-price-${random}" style="cursor: pointer">-</td>
+    //     <td>
+    //         <select class="my-select select2-${random}" style="width: 100%;" name="day_service[${event.target.dataset.day}][]">
+    //             <option value=""></option>
+    //             ${serviceTour.map(item => `<option value="${item.id}">${item.name}</option>`).join('')}
+    //         </select>
+    //     </td>
+    //     <td class="ta-center service-all-2" >
+    //         <select class="my-select select2-child-${random}" style="width: 100%;" name="day_service_child[${event.target.dataset.day}][]">
+    //             <option value=""></option>
+    //         </select>
+    //     </td>
+    //     <td class="ta-center">
+    //         <select class="my-select select2-child-2-${random}" style="width: 100%;" name="day_service_option[${event.target.dataset.day}][]">
+    //             <option value=""></option>
+    //         </select>
+    //     </td>
+    //     <td class="ta-center service-price service-all-price-${random}" data-price="0">---</td>`;
+    //         tableServiceTBody.appendChild(newRow);
 
-            // Event for removing the row
-            newRow.querySelector('.remove-btn').addEventListener('click', function () {
-                const elementPriceBox = document.querySelector(`.${this.dataset.remove}`);
-                const price = elementPriceBox.dataset.price;
-                const listTotalPrice = document.querySelector('.service-individual-total-price')
+    //         // Event for removing the row
+    //         newRow.querySelector('.remove-btn').addEventListener('click', function () {
+    //             const elementPriceBox = document.querySelector(`.${this.dataset.remove}`);
+    //             const price = elementPriceBox.dataset.price;
+    //             const listTotalPrice = document.querySelector('.service-individual-total-price')
 
-                // const priceTourBox2 = document.querySelectorAll('.price-tour-box-2')
-                // priceTourBox2.forEach(item => {
-                //     if (elementPriceBox.dataset.class.split('-').pop() == item.dataset.target.split('-').pop()) {
-                //         item.setAttribute('data-price', item.dataset.price - (elementPriceBox.dataset.price * number_adult.value))
-                //     }
-                // })
-                elementPriceBox.setAttribute('data-price', 0)
-                listTotalPrice.setAttribute('data-price', Number(listTotalPrice.dataset.price) - (Number(price) * number_adult.value))
-                totalPriceBox1()
-                newRow.remove()
-                countTotalPriceFinal()
-            });
+    //             // const priceTourBox2 = document.querySelectorAll('.price-tour-box-2')
+    //             // priceTourBox2.forEach(item => {
+    //             //     if (elementPriceBox.dataset.class.split('-').pop() == item.dataset.target.split('-').pop()) {
+    //             //         item.setAttribute('data-price', item.dataset.price - (elementPriceBox.dataset.price * number_adult.value))
+    //             //     }
+    //             // })
+    //             elementPriceBox.setAttribute('data-price', 0)
+    //             listTotalPrice.setAttribute('data-price', Number(listTotalPrice.dataset.price) - (Number(price) * number_adult.value))
+    //             totalPriceBox1()
+    //             newRow.remove()
+    //             countTotalPriceFinal()
+    //         });
 
-            // Initialize Select2 for the new row
-            $(newRow).find(`.select2-${random}`).select2({
-                placeholder: 'Select an service',
-                allowClear: true,
-            });
+    //         // Initialize Select2 for the new row
+    //         $(newRow).find(`.select2-${random}`).select2({
+    //             placeholder: 'Select an service',
+    //             allowClear: true,
+    //         });
 
-            $(`.select2-${random}`).on('select2:select', function (e) {
-                const data = e.params.data;
-                let url = routeServiceGetChild;
-                url = url.replace(':id', data.id);
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function ({
-                        error,
-                        data
-                    }) {
-                        if (!error) {
-                            if (data && data.length > 0) {
-                                $(newRow).find(`.select2-child-${random}`).html([
-                                    '<option value=""></option>', ...data.map(
-                                        item => {
-                                            return `<option value="${item.id}">${item.name}</option>`
-                                        })
-                                ].join(''))
-                            } else {
-                                $(newRow).find(`.select2-child-${random}`).html(
-                                    '<option value=""></option>')
-                            }
-                        }
-                    }
-                })
-            });
+    //         $(`.select2-${random}`).on('select2:select', function (e) {
+    //             const data = e.params.data;
+    //             let url = routeServiceGetChild;
+    //             url = url.replace(':id', data.id);
+    //             $.ajax({
+    //                 url: url,
+    //                 type: 'GET',
+    //                 success: function ({
+    //                     error,
+    //                     data
+    //                 }) {
+    //                     if (!error) {
+    //                         if (data && data.length > 0) {
+    //                             $(newRow).find(`.select2-child-${random}`).html([
+    //                                 '<option value=""></option>', ...data.map(
+    //                                     item => {
+    //                                         return `<option value="${item.id}">${item.name}</option>`
+    //                                     })
+    //                             ].join(''))
+    //                         } else {
+    //                             $(newRow).find(`.select2-child-${random}`).html(
+    //                                 '<option value=""></option>')
+    //                         }
+    //                     }
+    //                 }
+    //             })
+    //         });
 
-            $(newRow).find(`.select2-child-${random}`).select2({
-                placeholder: 'Select an service',
-                allowClear: true,
-            })
-            $(`.select2-child-${random}`).on('select2:select', function (e) {
-                const data = e.params.data;
-                let url = routeServiceGetOptionByServiceId;
-                url = url.replace(':id', data.id);
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    data: {
-                        time: document.getElementById('date_start').value
-                    },
-                    success: function ({
-                        error,
-                        data
-                    }) {
-                        if (!error) {
-                            if (data && data.length > 0) {
-                                $(newRow).find(`.select2-child-2-${random}`).html([
-                                    '<option value=""></option>', ...data.map(
-                                        item => {
-                                            return `<option value="${item.id}" data-price="${item.price}" data-class="price-tour-box-2-${item.service_type_id}" data-type="2">${item.name}</option>`
-                                        })
-                                ].join(''))
-                            } else {
-                                $(newRow).find(`.select2-child-2-${random}`).html(
-                                    '<option value=""></option>')
-                            }
-                        }
-                    }
-                })
-            });
+    //         $(newRow).find(`.select2-child-${random}`).select2({
+    //             placeholder: 'Select an service',
+    //             allowClear: true,
+    //         })
+    //         $(`.select2-child-${random}`).on('select2:select', function (e) {
+    //             const data = e.params.data;
+    //             let url = routeServiceGetOptionByServiceId;
+    //             url = url.replace(':id', data.id);
+    //             $.ajax({
+    //                 url: url,
+    //                 type: 'GET',
+    //                 data: {
+    //                     time: document.getElementById('date_start').value
+    //                 },
+    //                 success: function ({
+    //                     error,
+    //                     data
+    //                 }) {
+    //                     if (!error) {
+    //                         if (data && data.length > 0) {
+    //                             $(newRow).find(`.select2-child-2-${random}`).html([
+    //                                 '<option value=""></option>', ...data.map(
+    //                                     item => {
+    //                                         return `<option value="${item.id}" data-price="${item.price}" data-class="price-tour-box-2-${item.service_type_id}" data-type="2">${item.name}</option>`
+    //                                     })
+    //                             ].join(''))
+    //                         } else {
+    //                             $(newRow).find(`.select2-child-2-${random}`).html(
+    //                                 '<option value=""></option>')
+    //                         }
+    //                     }
+    //                 }
+    //             })
+    //         });
 
-            $(newRow).find(`.select2-child-2-${random}`).select2({
-                placeholder: 'Select an service',
-                allowClear: true,
-            })
-            $(`.select2-child-2-${random}`).on('select2:select', function (e) {
-                const listOption = e.target.querySelectorAll('option');
-                const option = listOption[e.target.selectedIndex];
+    //         $(newRow).find(`.select2-child-2-${random}`).select2({
+    //             placeholder: 'Select an service',
+    //             allowClear: true,
+    //         })
+    //         $(`.select2-child-2-${random}`).on('select2:select', function (e) {
+    //             const listOption = e.target.querySelectorAll('option');
+    //             const option = listOption[e.target.selectedIndex];
 
-                $(newRow).find(`.service-all-price-${random}`).text(formatCurrency(option.dataset
-                    .price))
-                $(newRow).find(`.service-all-price-${random}`).attr('data-price', option.dataset
-                    .price)
-                $(newRow).find(`.service-all-price-${random}`).attr('data-type', option.dataset
-                    .type)
-                $(newRow).find(`.service-all-price-${random}`).addClass(option.dataset.class)
-                $(newRow).find(`.service-all-price-${random}`).attr('data-class', option.dataset
-                    .class)
-                countTotalServicePrice()
-                totalPriceBox1()
-            });
-        }
-    });
+    //             $(newRow).find(`.service-all-price-${random}`).text(formatCurrency(option.dataset
+    //                 .price))
+    //             $(newRow).find(`.service-all-price-${random}`).attr('data-price', option.dataset
+    //                 .price)
+    //             $(newRow).find(`.service-all-price-${random}`).attr('data-type', option.dataset
+    //                 .type)
+    //             $(newRow).find(`.service-all-price-${random}`).addClass(option.dataset.class)
+    //             $(newRow).find(`.service-all-price-${random}`).attr('data-class', option.dataset
+    //                 .class)
+    //             countTotalServicePrice()
+    //             totalPriceBox1()
+    //         });
+    //     }
+    // });
     // Kết thúc xử lý chọn dịch vụ
 }
 
 btnAddDay.addEventListener('click', function () {
     generateListDay([getNextFiveDays(dateStart, dayNumber)[getNextFiveDays(dateStart, dayNumber).length - 1]], 1, 1, ++dayNumber)
 })
+
+
+
+document.addEventListener('click', function (event) {
+    const target = event.target
+    if (target.classList.contains('remove-btn')) {
+        const elementPriceBox = document.querySelector(`.${target.dataset.remove}`);
+        const price = elementPriceBox.dataset.price;
+        const listTotalPrice = document.querySelector('.service-individual-total-price')
+
+        // const priceTourBox2 = document.querySelectorAll('.price-tour-box-2')
+        // priceTourBox2.forEach(item => {
+        //     if (elementPriceBox.dataset.class.split('-').pop() == item.dataset.target.split('-').pop()) {
+        //         item.setAttribute('data-price', item.dataset.price - (elementPriceBox.dataset.price * number_adult.value))
+        //     }
+        // })
+        elementPriceBox.setAttribute('data-price', 0)
+        listTotalPrice.setAttribute('data-price', Number(listTotalPrice.dataset.price) - (Number(price) * number_adult.value))
+        totalPriceBox1()
+        target.parentElement.remove()
+        countTotalPriceFinal()
+    }
+})
+
+
+document.addEventListener('click', function (event) {
+    const random = Math.floor(Math.random() * 10000000);
+    if (event.target.classList.contains('btn-add-option')) {
+        const tableServiceTBody = event.target.closest('table').querySelector('tbody');
+        let newRow = document.createElement('tr');
+        newRow.innerHTML = `
+    <td class="ta-center remove-btn " data-remove="service-all-price-${random}" style="cursor: pointer">-</td>
+    <td>
+        <select class="my-select select2-${random}" style="width: 100%;" name="day_service[${event.target.dataset.day}][]">
+            <option value=""></option>
+            ${serviceTour.map(item => `<option value="${item.id}">${item.name}</option>`).join('')}
+        </select>
+    </td>
+    <td class="ta-center service-all-2" >
+        <select class="my-select select2-child-${random}" style="width: 100%;" name="day_service_child[${event.target.dataset.day}][]">
+            <option value=""></option>
+        </select>
+    </td>
+    <td class="ta-center">
+        <select class="my-select select2-child-2-${random}" style="width: 100%;" name="day_service_option[${event.target.dataset.day}][]">
+            <option value=""></option>
+        </select>
+    </td>
+    <td class="ta-center service-price service-all-price-${random}" data-price="0">---</td>`;
+        tableServiceTBody.appendChild(newRow);
+
+        // Event for removing the row
+        // newRow.querySelector('.remove-btn').addEventListener('click', function () {
+        //     const elementPriceBox = document.querySelector(`.${this.dataset.remove}`);
+        //     const price = elementPriceBox.dataset.price;
+        //     const listTotalPrice = document.querySelector('.service-individual-total-price')
+
+        //     // const priceTourBox2 = document.querySelectorAll('.price-tour-box-2')
+        //     // priceTourBox2.forEach(item => {
+        //     //     if (elementPriceBox.dataset.class.split('-').pop() == item.dataset.target.split('-').pop()) {
+        //     //         item.setAttribute('data-price', item.dataset.price - (elementPriceBox.dataset.price * number_adult.value))
+        //     //     }
+        //     // })
+        //     elementPriceBox.setAttribute('data-price', 0)
+        //     listTotalPrice.setAttribute('data-price', Number(listTotalPrice.dataset.price) - (Number(price) * number_adult.value))
+        //     totalPriceBox1()
+        //     newRow.remove()
+        //     countTotalPriceFinal()
+        // });
+
+        // Initialize Select2 for the new row
+        $(newRow).find(`.select2-${random}`).select2({
+            placeholder: 'Select an service',
+            allowClear: true,
+        });
+
+        $(`.select2-${random}`).on('select2:select', function (e) {
+            const data = e.params.data;
+            let url = routeServiceGetChild;
+            url = url.replace(':id', data.id);
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function ({
+                    error,
+                    data
+                }) {
+                    if (!error) {
+                        if (data && data.length > 0) {
+                            $(newRow).find(`.select2-child-${random}`).html([
+                                '<option value=""></option>', ...data.map(
+                                    item => {
+                                        return `<option value="${item.id}">${item.name}</option>`
+                                    })
+                            ].join(''))
+                        } else {
+                            $(newRow).find(`.select2-child-${random}`).html(
+                                '<option value=""></option>')
+                        }
+                    }
+                }
+            })
+        });
+
+        $(newRow).find(`.select2-child-${random}`).select2({
+            placeholder: 'Select an service',
+            allowClear: true,
+        })
+        $(`.select2-child-${random}`).on('select2:select', function (e) {
+            const data = e.params.data;
+            let url = routeServiceGetOptionByServiceId;
+            url = url.replace(':id', data.id);
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {
+                    time: document.getElementById('date_start').value
+                },
+                success: function ({
+                    error,
+                    data
+                }) {
+                    if (!error) {
+                        if (data && data.length > 0) {
+                            $(newRow).find(`.select2-child-2-${random}`).html([
+                                '<option value=""></option>', ...data.map(
+                                    item => {
+                                        return `<option value="${item.id}" data-price="${item.price}" data-class="price-tour-box-2-${item.service_type_id}" data-type="2">${item.name}</option>`
+                                    })
+                            ].join(''))
+                        } else {
+                            $(newRow).find(`.select2-child-2-${random}`).html(
+                                '<option value=""></option>')
+                        }
+                    }
+                }
+            })
+        });
+
+        $(newRow).find(`.select2-child-2-${random}`).select2({
+            placeholder: 'Select an service',
+            allowClear: true,
+        })
+        $(`.select2-child-2-${random}`).on('select2:select', function (e) {
+            const listOption = e.target.querySelectorAll('option');
+            const option = listOption[e.target.selectedIndex];
+            // console.log(option);
+            $(newRow).find(`.service-all-price-${random}`).text(formatCurrency(option.dataset
+                .price))
+            $(newRow).find(`.service-all-price-${random}`).attr('data-price', option.dataset
+                .price)
+            $(newRow).find(`.service-all-price-${random}`).attr('data-type', option.dataset
+                .type)
+            $(newRow).find(`.service-all-price-${random}`).addClass(option.dataset.class)
+            $(newRow).find(`.service-all-price-${random}`).attr('data-class', option.dataset
+                .class)
+            countTotalServicePrice()
+            totalPriceBox1()
+        });
+    }
+});
