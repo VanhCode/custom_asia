@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
+use App\Models\ServiceFullOption;
 use App\Models\Tour;
 use App\Models\MyTrip;
 use App\Models\Booking;
@@ -21,8 +21,6 @@ use App\Models\IncludeServiceTrip;
 use App\Traits\TransactionService;
 use App\Http\Controllers\Controller;
 use App\Models\PriceTypeServiceTrip;
-use App\Models\ServiceFullOption;
-use App\Models\ServiceOption;
 
 class AdminMyTripController extends Controller
 {
@@ -42,32 +40,30 @@ class AdminMyTripController extends Controller
     protected $priceTypeServiceTrip;
     protected $surchargeTrip;
     protected $includeServiceTrip;
-    protected $serviceOption;
 
     protected $serviceFullOption;
 
     protected $surcharge;
 
     public function __construct(
-        Booking $booking,
-        ServiceFull $serviceFull,
-        Service $service,
-        ServiceOption $serviceOption,
-        ServiceType $serviceType,
-        AdditionalFee $additionalFee,
-        ServiceOther $serviceOther,
-        MyTrip $myTrip,
-        Tour $tour,
-        TourDay $tourDay,
-        TourService $tourService,
-        TourDayOption $tourDayOption,
+        Booking              $booking,
+        ServiceFull          $serviceFull,
+        Service              $service,
+        ServiceType          $serviceType,
+        AdditionalFee        $additionalFee,
+        ServiceOther         $serviceOther,
+        MyTrip               $myTrip,
+        Tour                 $tour,
+        TourDay              $tourDay,
+        TourService          $tourService,
+        TourDayOption        $tourDayOption,
         PriceTypeServiceTrip $priceTypeServiceTrip,
-        SurchargeTrip $surchargeTrip,
-        IncludeServiceTrip $includeServiceTrip,
-        ServiceFullOption $serviceFullOption,
-        SurchargeTrip $surcharge
-    ) {
-        $this->serviceOption = $serviceOption;
+        SurchargeTrip        $surchargeTrip,
+        IncludeServiceTrip   $includeServiceTrip,
+        ServiceFullOption    $serviceFullOption,
+        AdditionalFee        $surcharge
+    )
+    {
         $this->includeServiceTrip = $includeServiceTrip;
         $this->surchargeTrip = $surchargeTrip;
         $this->priceTypeServiceTrip = $priceTypeServiceTrip;
@@ -100,18 +96,8 @@ class AdminMyTripController extends Controller
         $serviceTypes = $this->serviceType->where('active', 1)->get();
         $serviceOther = $this->additionalFee->where('active', 1)->get();
         $serviceIncluded = $this->serviceOther->where('active', 1)->get();
-        $listTour = $this->tour->with('tourDays')->get();
 
-
-        return view('admin.pages.my-trip.create', compact(
-            'booking',
-            'serviceTour',
-            'serviceFullTour',
-            'serviceTypes',
-            'serviceOther',
-            'serviceIncluded',
-            'listTour'
-        ));
+        return view('admin.pages.my-trip.create', compact('booking', 'serviceTour', 'serviceFullTour', 'serviceTypes', 'serviceOther', 'serviceIncluded'));
     }
 
     public function store(Request $request)
@@ -303,7 +289,7 @@ class AdminMyTripController extends Controller
 
         $serviceIncluded = $this->serviceOther->where('active', 1)->get();
 
-        $surcharges = $this->surcharge->get();
+        $surcharges = $this->surcharge->where('active', 1)->get();
 
         return view('admin.pages.my-trip.edit', compact(
             'serviceFullTourOptions',
@@ -702,70 +688,5 @@ class AdminMyTripController extends Controller
             config('ajax.messages.success.deleted'),
             config('ajax.status.success.deleted')
         );
-    }
-
-    public function addTourPackage(Request $request)
-    {
-        // dd($request->all());
-        if (count($request->listIds) > 0) {
-            $day_start = $request->day_start + 1;
-            $date_start = Carbon::parse($request->date_start);
-
-            $listDateNext = [];
-
-            for ($i = 0; $i < count($request->listIds); $i++) {
-                if ($date_start->isToday() && $i == 0) {
-                    $listDateNext[] =  $date_start->toDateString();
-                } else {
-                    $listDateNext[] =  $date_start->addDay()->toDateString();
-                }
-            }
-
-            $randoms = [];
-            for ($i = 0; $i < count($request->listIds); $i++) {
-                $random = rand();
-                while (in_array($random, $randoms)) {
-                    $random = rand();
-                }
-                $randoms[] = $random;
-            }
-
-            $listDay = $this->tourDay->whereIn('id', $request->listIds)->get();
-            $numberDay = count($request->listIds);
-
-            $servicesOptions = $this->service->where('parent_id', 0)->get();
-
-            $dayHtml = view('admin.components.my-trip.day', compact(
-                'numberDay',
-                'day_start',
-                'listDateNext',
-                'randoms'
-            ))->render();
-            $dayContentHtml = view('admin.components.my-trip.day-content', compact(
-                'numberDay',
-                'day_start',
-                'listDateNext',
-                'randoms',
-                'randoms',
-                'listDay',
-                'servicesOptions',
-                'request'
-            ))->render();
-
-            return response()->json([
-                'status' => 'success',
-                'dayHtml' => $dayHtml,
-                'dayContentHtml' => $dayContentHtml,
-                'dayLast' => $day_start + count($request->listIds) - 1,
-                'date_Start' => current($listDateNext)
-            ]);
-        }
-        return response()->json([
-            'status' => 'success',
-            'dayHtml' => '',
-            'dayContentHtml' => '',
-            'dayLast' => 0,
-            'date_Start' => ''
-        ]);
     }
 }
