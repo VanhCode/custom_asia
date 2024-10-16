@@ -222,9 +222,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::group(['prefix' => 'my-trip'], function () {
         Route::get('/', "AdminMyTripController@index")->name("admin.my-trip.index");
         Route::get('/create', "AdminMyTripController@create")->name("admin.my-trip.create");
-        Route::post('/', "AdminMyTripController@store")->name("admin.my-trip.store");
-        Route::get('/{id}', "AdminMyTripController@edit")->name("admin.my-trip.edit");
-        Route::put('/{id}', "AdminMyTripController@update")->name("admin.my-trip.update");
+        Route::post('/store', "AdminMyTripController@store")->name("admin.my-trip.store");
+        Route::get('/edit/{id}', "AdminMyTripController@edit")->name("admin.my-trip.edit");
+        Route::put('/update/{id}', "AdminMyTripController@update")->name("admin.my-trip.update");
+        Route::get('/copy/{id}', "AdminMyTripController@copy")->name("admin.my-trip.copy");
+        Route::post('/storeCopy/{id}', "AdminMyTripController@storeCopy")->name("admin.my-trip.storeCopy");
         Route::delete('/{id}', "AdminMyTripController@destroy")->name("admin.my-trip.destroy");
     });
 

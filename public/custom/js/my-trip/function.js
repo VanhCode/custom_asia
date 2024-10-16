@@ -87,6 +87,8 @@ resultPriceBox1PercentInput.onchange = function () {
     resultPriceBox1.setAttribute('data-price', price)
     resultPriceBox1.innerText = `${formatCurrency(price)}`
     const inputHidden = document.querySelector(`.${resultPriceBox1.dataset.hidden}`)
+    const inputHidden1 = document.getElementById(resultPriceBox1.dataset.inputHidden)
+    inputHidden1.value = price
     inputHidden.setAttribute('data-price', formatCurrencyNumber(price) - Number(resultPriceBox1.dataset.limit))
     countTotalPriceFinal()
 }

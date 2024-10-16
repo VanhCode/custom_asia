@@ -6,6 +6,7 @@ return [
             "created" => "Created successfully",
             "updated" => "Updated successfully",
             "deleted" => "Deleted successfully",
+            "copied" => "Copied successfully",
         ],
     ],
 
