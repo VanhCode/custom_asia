@@ -10,4 +10,9 @@ class Tour extends Model
     //
     protected $table = "tours";
     protected $guarded = [];
+
+    public function tourDays()
+    {
+        return $this->hasMany(TourDay::class, 'tour_id');
+    }
 }
