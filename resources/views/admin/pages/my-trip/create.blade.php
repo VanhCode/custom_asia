@@ -2,6 +2,24 @@
 @section('title', 'My Trips')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_asset/css/utilities.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/style.css') }}">
+    <style>
+        .box-service-wrap {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            margin-bottom: 10px;
+        }
+
+        .box-service-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .box-service-option.title {
+            padding: 5px;
+            background-color: bisque
+        }
+    </style>
     <style>
         main {
             background-color: #eceff4;
@@ -371,7 +389,7 @@
                                 </div>
                             </div>
                             <div class="check-btn ta-center">
-                                <button>Nhân bản Tour Này</button>
+                                <button type="button">Nhân bản Tour Này</button>
                             </div>
                         </div>
                         <div class="clm" style="--w-xl: 8;  --w-md: 6; --w-xs: 12;">
@@ -395,13 +413,13 @@
                         </div>
                         <div class="clm" style="--w-xl: 2;  --w-md: 3; --w-xs: 12;">
                             <div class="check-btn ta-center">
-                                <button class="check-btn--bg">Export Word</button>
+                                <button type="button" class="check-btn--bg">Export Word</button>
                             </div>
                             <div class="check-btn ta-center">
-                                <button class="check-btn--bg">Export PDF</button>
+                                <button type="button" class="check-btn--bg">Export PDF</button>
                             </div>
                             <div class="check-btn ta-center">
-                                <button class="check-btn--bg">Send Link</button>
+                                <button type="button" class="check-btn--bg">Send Link</button>
                             </div>
                         </div>
                     </div>
@@ -466,13 +484,14 @@
                                     </li> --}}
                                 </ul>
                                 <div class="check-btn ta-center btn-add-day">
-                                    <button class="">Thêm ngày</button>
+                                    <button type="button" class="">Thêm ngày</button>
+                                </div>
+                                <div class="check-btn ta-center add-tour-package">
+                                    <button type="button" class="trigger-modal-btn" data-type="create">Thêm gói
+                                        tour</button>
                                 </div>
                                 <div class="check-btn ta-center">
-                                    <button class="">Thêm gói tour</button>
-                                </div>
-                                <div class="check-btn ta-center">
-                                    <button class="">Coppy Tour từ code khác</button>
+                                    <button type="button" class="">Coppy Tour từ code khác</button>
                                 </div>
                             </div>
                         </div>
@@ -676,7 +695,7 @@
                         <div class="clm" style="--w-xl:1.5;  --w-md: 12; --w-xs: 12;">
                             <div class="list-tour-ad-right">
                                 <div class="check-btn ta-center">
-                                    <button class="tt-up btn-view-all">View all days +</button>
+                                    <button type="button" class="tt-up btn-view-all">View all days +</button>
                                 </div>
                             </div>
                         </div>
@@ -704,12 +723,67 @@
         </div>
         <!-- End Model Info -->
     </div>
+
+    <!-- Modal -->
+    <div class="custom-modal-overlay" id="custom-modal">
+        <form id="customForm" action="" method="POST" data-type="create">
+            <div class="custom-modal" style="width:800px">
+                <div class="custom-modal-header">
+                    <h2 class="custom-modal-title"> Chọn gói tour</h2>
+                    <span class="custom-close-btn">&times;</span>
+                </div>
+                <div class="custom-modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            @if (isset($listTour) && $listTour->count() > 0)
+                                @foreach ($listTour as $tour)
+                                    <div class="form-check">
+                                        <input class="form-check-input radio-tour" type="radio"
+                                            id="tour_{{ $tour->id }}" value="{{ $tour->id }}" name="tour_id">
+                                        <label class="form-check-label" for="tour_{{ $tour->id }}">
+                                            {{ $tour->tourDays->count() }} days - {{ $tour->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                        <div class="col-6">
+                            @if (isset($listTour) && $listTour->count() > 0)
+                                @foreach ($listTour as $tour)
+                                    <div class="form-check tour-option d-none tour_{{ $tour->id }}">
+                                        @if ($tour->tourDays->count() > 0)
+                                            @foreach ($tour->tourDays()->get() as $day)
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="{{ $day->id }}" value="{{ $day }}">
+                                                <label class="form-check-label" for="{{ $day->id }}">
+                                                    Day {{ $day->day_number }}
+                                                </label>
+                                            @endforeach
+                                        @else
+                                            <p>Chưa có ngày nào</p>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+
+                </div>
+                <div class="custom-modal-footer">
+                    <button type="button" class="custom-btn custom-btn-confirm">Xác nhận</button>
+                    {{-- <button class="custom-btn custom-btn-cancel">Hủy</button> --}}
+                </div>
+            </div>
+        </form>
+    </div>
 @endsection
 @section('js')
     <script>
         const serviceFullTour = @json($serviceFullTour);
         const serviceTour = @json($serviceTour);
         const serviceIncluded = @json($serviceIncluded);
+
+        const routeAddTourPackage = '{{ route('admin.my-trip.addTourPackage') }}';
 
         const routeGetChild = '{{ route('admin.service-full.getChild', ['id' => ':id']) }}';
         const routeGetOptionByServiceId = '{{ route('admin.service-full-option.getOptionByServiceId', ['id' => ':id']) }}';
@@ -720,6 +794,7 @@
 
         const serviceOther = @json($serviceOther);
     </script>
+    <script src="{{ asset('custom/js/main.js') }}"></script>
     <script src="{{ asset('custom/js/my-trip/helper.js') }}"></script>
     <script src="{{ asset('custom/js/my-trip/function.js') }}"></script>
     <script src="{{ asset('custom/js/my-trip/file-manager.js') }}"></script>
@@ -729,6 +804,7 @@
     <script src="{{ asset('custom/js/my-trip/service-other.js') }}"></script>
     <script src="{{ asset('custom/js/my-trip/service-include.js') }}"></script>
     <script src="{{ asset('custom/js/my-trip/main.js') }}"></script>
+    <script src="{{ asset('custom/js/my-trip/add-tour-pakage.js') }}"></script>
 
     <script>
         document.getElementById('date_start').setAttribute('value', today);

@@ -228,6 +228,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         Route::get('/copy/{id}', "AdminMyTripController@copy")->name("admin.my-trip.copy");
         Route::post('/storeCopy/{id}', "AdminMyTripController@storeCopy")->name("admin.my-trip.storeCopy");
         Route::delete('/{id}', "AdminMyTripController@destroy")->name("admin.my-trip.destroy");
+        Route::get('/list/add-tour-package', "AdminMyTripController@addTourPackage")->name("admin.my-trip.addTourPackage");
     });
 
     Route::group(['prefix' => 'variant-value'], function () {

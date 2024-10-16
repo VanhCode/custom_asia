@@ -73,12 +73,12 @@ const totalPriceBox2 = () => {
 
         item.setAttribute('data-limit', count)
         count = count + (count * (inputPercent.value / 100))
+
         item.innerText = `${formatCurrency(count)}`
         item.setAttribute('data-price', count)
 
         document.getElementById(item.dataset.inputHidden).value = count
     })
-
     countTotalPriceTourBox2()
 }
 

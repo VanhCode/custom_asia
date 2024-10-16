@@ -25,6 +25,19 @@ btnAddServiceOtherBtn.addEventListener('click', function () {
 
     // Gán sự kiện remove cho các dòng mới
     newRow.querySelector('.remove-btn').addEventListener('click', function () {
+        // console.log(newRow.querySelector('.service-other-price-total').dataset.price)
+        const serviceOtherItem = newRow.querySelector('.service-other-price-total')
+        const totalPriceElement = document.querySelector(`.total-price-service-other`)
+
+        let price = totalPriceElement.dataset.price - Number(serviceOtherItem.dataset.price)
+        let pricePerOne = price / Number(number_adult_person.value)
+
+        totalPriceElement.innerHTML = `${formatCurrency(price)}`
+        totalPriceElement.setAttribute('data-price', price)
+        document.getElementById(totalPriceElement.dataset.inputHidden).value = price
+        document.querySelector('.total-price-service-other-one').innerHTML = `${formatCurrency(pricePerOne)}/ Người`
+        document.querySelector('.total-price-service-other-one').setAttribute('data-price', pricePerOne)
+        document.getElementById(document.querySelector('.total-price-service-other-one').dataset.inputHidden).value = pricePerOne
         newRow.remove()
         countTotalPriceFinal()
     });
