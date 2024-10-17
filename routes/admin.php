@@ -457,6 +457,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         Route::resource('/service-option', "ServiceOptionController");
         Route::get('/service-option-all/{id}', "ServiceOptionController@getOptionByServiceId")->name("service-option.getOptionByServiceId");
 
+        Route::post('/service-option/saveInformation', "ServiceOptionController@saveInformation")->name("service-option.saveInformation");
+
         Route::resource('/service-season', "ServiceSeasonController");
 
         Route::resource('/additional-fee', "AdditionalFeeController");
@@ -465,6 +467,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 
         Route::resource('/service-full-option', "ServiceFullOptionController");
         Route::get('/service-full-option-all/{id}', "ServiceFullOptionController@getOptionByServiceId")->name("service-full-option.getOptionByServiceId");
+
+        Route::post('/service-full-option/saveInformation', "ServiceFullOptionController@saveInformation")->name("service-full-option.saveInformation");
 
         Route::resource('/service-full-season', "ServiceFullSeasonController");
     });

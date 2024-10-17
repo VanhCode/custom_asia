@@ -54,6 +54,71 @@
                             <a href="{{ route('admin.service-other.create') }}" class="custom-btn create">Thêm mới</a>
                         </div> --}}
 
+                        <form action="{{ route('admin.service-option.saveInformation') }}" method="post">
+                            @csrf
+                            <input type="hidden" value="{{ request()->service_id > 0 ? request()->service_id : '' }}" name="service_id">
+                            <input type="hidden" value="{{ !empty($serviceInformation->id) ? $serviceInformation->id : '' }}" name="service_information_id">
+                            <div class="row mt-3 mb-3">
+                                <div class="col-2">
+                                    <select name="city_id" class="select2  w-100" id="">
+                                        <option value="">----</option>
+                                        @if(!empty($cities))
+                                            @foreach($cities as $city)
+                                                @isset($serviceInformation->city_id)
+                                                    <option
+                                                        {{ $serviceInformation->city_id == $city->id ? 'selected' : '' }}
+                                                        value="{{ $city->id }}">{{ $city->name }}</option>
+                                                @else
+                                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                @endisset
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <select name="district_id" class="select2 w-100" id="">
+                                        <option value="">----</option>
+                                        @if(!empty($districts))
+                                            @foreach($districts as $district)
+                                                @isset($serviceInformation->district_id)
+                                                    <option
+                                                        {{ $serviceInformation->district_id == $district->id ? 'selected' : '' }}
+                                                        value="{{ $district->id }}">{{ $district->name }}</option>
+                                                @else
+                                                    <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                                @endisset
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <select name="service_class_id" class="select2 w-100" id="">
+                                        <option value="">----</option>
+                                        @if(!empty($serviceClass))
+                                            @foreach($serviceClass as $serviceCl)
+                                                @isset($serviceInformation->service_class_id)
+                                                    <option
+                                                        {{ $serviceInformation->service_class_id == $serviceCl->id ? 'selected' : '' }}
+                                                        value="{{ $serviceCl->id }}">{{ $serviceCl->name }}</option>
+                                                @else
+                                                    <option value="{{ $serviceCl->id }}">{{ $serviceCl->name }}</option>
+                                                @endisset
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" name="text1" id="" value="{{ !empty($serviceInformation->text1) ? $serviceInformation->text1 : '' }}" class="form-control" style="height: 44px !important;">
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" name="text2" id="text2" value="{{ !empty($serviceInformation->text2) ? $serviceInformation->text2 : '' }}" class="form-control" style="height: 44px !important;">
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-success" type="submit">Save</button>
+                                </div>
+                            </div>
+                        </form>
+
                         <div class="card card-outline card-primary mt-3">
                             <div class="card-body table-responsive lb-list-category">
                                 @if ($service->seasons->count() > 0)
@@ -176,5 +241,11 @@
 @endsection
 
 @section('js')
+    <script>
+        $('.select2').select2({
+            placeholder: 'Select an service',
+            allowClear: true,
+        })
+    </script>
     <script src="{{ asset('custom/js/main.js') }}"></script>
 @endsection

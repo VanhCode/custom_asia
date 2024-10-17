@@ -60,6 +60,14 @@ customBtnConfirm.addEventListener('click', function () {
                 dayNumber = dayLast + listIds.length - 1;
                 dateStart = date_Start;
                 document.getElementById("custom-modal").classList.remove("active");
+
+                listOption.forEach(item => {
+                    item.checked = false
+                })
+
+                document.querySelectorAll('.radio-tour').forEach(item => {
+                    item.checked = false
+                })
             }
         }
     })

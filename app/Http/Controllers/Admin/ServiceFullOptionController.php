@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\ServiceClass;
+use App\Models\ServiceInformation;
 use Carbon\Carbon;
 use App\Models\Service;
 use App\Models\ServiceFull;
@@ -21,12 +23,23 @@ class ServiceFullOptionController extends Controller
     protected $service;
     protected $serviceType;
     protected $serviceOption;
+    protected $serviceClass;
 
-    public function __construct(ServiceFull $service, ServiceType $serviceType, ServiceFullOption $serviceOption)
+    protected $serviceInformation;
+
+    public function __construct(
+        ServiceFull $service,
+        ServiceType $serviceType,
+        ServiceFullOption $serviceOption,
+        ServiceClass $serviceClass,
+        ServiceInformation $serviceInformation
+    )
     {
         $this->service = $service;
         $this->serviceType = $serviceType;
         $this->serviceOption = $serviceOption;
+        $this->serviceClass = $serviceClass;
+        $this->serviceInformation = $serviceInformation;
     }
     /**
      * Display a listing of the resource.
@@ -37,11 +50,16 @@ class ServiceFullOptionController extends Controller
     {
         if ($request->input('service_id')) {
             $service = $this->service->find($request->input('service_id'));
+
             if (!$service) {
                 return abort(404);
             }
 
-            return view('admin.pages.service-full-option.index', compact('service'));
+            $serviceClass = $this->serviceClass->all();
+
+            $serviceInformation = $this->serviceInformation->where('service_id', $request->input('service_id'))->first();
+
+            return view('admin.pages.service-full-option.index', compact('service', 'serviceClass', 'serviceInformation'));
         }
         return abort(404);
     }
@@ -68,6 +86,39 @@ class ServiceFullOptionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function saveInformation(Request $request)
+    {
+        $this->execute(function () use ($request) {
+
+            if (empty($request->service_information_id)) {
+                $data = [
+                    'service_id' => $request->service_id,
+                    'city_id' => $request->city_id,
+                    'district_id' => $request->district_id,
+                    'service_class_id' => $request->service_class_id,
+                    'text1' => $request->text1,
+                    'text2' => $request->text2
+                ];
+
+                $this->serviceInformation->create($data);
+            } else {
+                $data = [
+                    'service_id' => $request->service_id,
+                    'city_id' => $request->city_id,
+                    'district_id' => $request->district_id,
+                    'service_class_id' => $request->service_class_id,
+                    'text1' => $request->text1,
+                    'text2' => $request->text2
+                ];
+
+                $this->serviceInformation->where('id', $request->service_information_id)->where('service_id', $request->service_id)->update($data);
+            }
+        });
+
+        return redirect()->route('admin.service-full-option.index', ['service_id' => $request->service_id])->with('alert', config('ajax.messages.success.created'));
+    }
+
     public function store(Request $request)
     {
         $request->validate(

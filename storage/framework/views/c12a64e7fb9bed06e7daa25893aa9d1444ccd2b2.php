@@ -4,116 +4,116 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> @yield('title') </title>
+    <title> <?php echo $__env->yieldContent('title'); ?> </title>
     <meta https-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta https-equiv="Content-Language" content="vi" />
-    <meta name="keywords" content="@yield('keywords')" />
-    <meta name="description" content="@yield('description')" />
-    <meta name="abstract" content="@yield('abstract')" />
+    <meta name="keywords" content="<?php echo $__env->yieldContent('keywords'); ?>" />
+    <meta name="description" content="<?php echo $__env->yieldContent('description'); ?>" />
+    <meta name="abstract" content="<?php echo $__env->yieldContent('abstract'); ?>" />
     <meta name="ROBOTS" content="Metaflow" />
-    <meta name="ROBOTS" content="noindex, nofollow, all" />
+    <meta name="ROBOTS" content="index, follow, all" />
     <meta name="revisit-after" content="1 days" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:image" content="@yield('image')" />
-    <meta property="og:image:alt" content="@yield('image')" />
+    <meta property="og:image" content="<?php echo $__env->yieldContent('image'); ?>" />
+    <meta property="og:image:alt" content="<?php echo $__env->yieldContent('image'); ?>" />
 
-    <meta property="og:url" content="{{ makeLink('home') }}" />
+    <meta property="og:url" content="<?php echo e(makeLink('home')); ?>" />
     <meta property="og:type" content="article">
-    <meta property="og:title" content="@yield('title')">
-    <meta property="og:description" content="@yield('description')">
-    <link rel="shortcut icon" href="{{ URL::to('/favicon.ico') }}" />
+    <meta property="og:title" content="<?php echo $__env->yieldContent('title'); ?>">
+    <meta property="og:description" content="<?php echo $__env->yieldContent('description'); ?>">
+    <link rel="shortcut icon" href="<?php echo e(URL::to('/favicon.ico')); ?>" />
 
-    <meta property="og:url" content="{{ url()->full() }}" />
+    <meta property="og:url" content="<?php echo e(url()->full()); ?>" />
     <meta property="og:type" content="article">
-    <meta property="og:title" content="@yield('title')">
-    <meta property="og:description" content="@yield('description')">
-    <link rel="shortcut icon" href="{{ URL::to('/favicon.ico') }}" />
+    <meta property="og:title" content="<?php echo $__env->yieldContent('title'); ?>">
+    <meta property="og:description" content="<?php echo $__env->yieldContent('description'); ?>">
+    <link rel="shortcut icon" href="<?php echo e(URL::to('/favicon.ico')); ?>" />
 
-    <meta name="copyright" content="Copyright (c) by {{ makeLink('home') }}" />
+    <meta name="copyright" content="Copyright (c) by <?php echo e(makeLink('home')); ?>" />
     <meta https-equiv="audience" content="General" />
     <meta name="resource-type" content="Document" />
     <meta name="distribution" content="Global" />
     <meta name="revisit-after" content="1 days" />
-    <meta name="GENERATOR" content="{{ makeLink('home') }}" />
-    <meta name="application-name" content="@yield('title')" />
+    <meta name="GENERATOR" content="<?php echo e(makeLink('home')); ?>" />
+    <meta name="application-name" content="<?php echo $__env->yieldContent('title'); ?>" />
     <meta https-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width">
     <meta name="theme-color" content="#fff" />
-    <link rel="alternate" href="{{ url()->full() }}" hreflang="vi-vn" />
-    @yield('canonical')
-    @yield('prevPage')
-    @yield('nextPage')
+    <link rel="alternate" href="<?php echo e(url()->full()); ?>" hreflang="vi-vn" />
+    <?php echo $__env->yieldContent('canonical'); ?>
+    <?php echo $__env->yieldContent('prevPage'); ?>
+    <?php echo $__env->yieldContent('nextPage'); ?>
     <!-- facebook -->
     <meta property="og:locale" content="vi_VN" />
-    <meta property="og:site_name" content="@yield('title')" />
-    <meta property="og:url" content="{{ url()->full() }}" />
-    <meta property="og:type" content="@yield('title')" />
-    <meta property="og:title" content="@yield('title')" />
-    <meta property="og:description" content="@yield('description')" />
-    <meta property="og:image" content="@yield('image')" />
+    <meta property="og:site_name" content="<?php echo $__env->yieldContent('title'); ?>" />
+    <meta property="og:url" content="<?php echo e(url()->full()); ?>" />
+    <meta property="og:type" content="<?php echo $__env->yieldContent('title'); ?>" />
+    <meta property="og:title" content="<?php echo $__env->yieldContent('title'); ?>" />
+    <meta property="og:description" content="<?php echo $__env->yieldContent('description'); ?>" />
+    <meta property="og:image" content="<?php echo $__env->yieldContent('image'); ?>" />
     <meta property="og:image:width" content="900" />
     <meta property="og:image:height" content="420" />
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('lib/bootstrap-4.5.3-dist/css/bootstrap.min.css') }}"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('font/fontawesome-5.13.1/css/all.min.css') }}"> -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('lib/wow/css/animate.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('lib/slick-1.8.1/css/slick.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('lib/slick-1.8.1/css/slick-theme.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('lib/lightbox-plus/css/lightbox.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/utilities.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/header.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/prd-detail.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/footer.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo e(asset('lib/bootstrap-4.5.3-dist/css/bootstrap.min.css')); ?>"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo e(asset('font/fontawesome-5.13.1/css/all.min.css')); ?>"> -->
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('lib/wow/css/animate.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('lib/slick-1.8.1/css/slick.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('lib/slick-1.8.1/css/slick-theme.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('lib/lightbox-plus/css/lightbox.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend/css/utilities.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend/css/header.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend/css/prd-detail.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend/css/style.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('frontend/css/footer.css')); ?>">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/lib/leaflet/leaflet.css') }}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('/lib/leaflet/leaflet.css')); ?>">
 
-    @yield('css')
+    <?php echo $__env->yieldContent('css'); ?>
     <style>
-        #popup-map-common .faqs-title {
-            font-size: 14px;
-            font-weight: 600;
-        }
-        #popup-map-common .faqs-container {
-            height: 38px;
-            padding-left: 24px;
-        }
-        #popup-map-common .tour-detail-content_box.faqs--js {
-            margin-bottom: 0px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #cacaca;
-        }
-        #popup-map-common .faqs-circle {
-            height: 24px;
-            width: 24px;
-        }
+       #popup-map-common .faqs-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+#popup-map-common .faqs-container {
+  height: 38px;
+  padding-left: 24px;
+}
+#popup-map-common .tour-detail-content_box.faqs--js {
+  margin-bottom: 0px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #cacaca;
+}
+#popup-map-common .faqs-circle {
+  height: 24px;
+  width: 24px;
+}
 
-        #popup-map-common .faqs-container:not(:last-child)::before {
-            position: absolute;
+#popup-map-common .faqs-container:not(:last-child)::before {
+  position: absolute;
 
-            content: "";
+  content: "";
 
-            left: -3px;
+  left: -3px;
 
-            width: 1px;
+  width: 1px;
 
-            height: 100%;
+  height: 100%;
 
-            background-color: #d3d2da;
+  background-color: #d3d2da;
 
-            top: 20px;
+  top: 20px;
 
-        }
-        #popup-map-common h2 {
-            font-size: 19px;
-            line-height: 1.4;
-            margin-bottom: 20px;
-        }
+}
+#popup-map-common h2 {
+  font-size: 19px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
         .popup-cart-mobile {
             max-width: 450px;
             height: auto;
@@ -513,24 +513,26 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    @php
+    <?php
         $code_header = \App\Models\Code::find(5);
         $code_home = \App\Models\Code::find(6);
         $code_footer = \App\Models\Code::find(7);
-    @endphp
+    ?>
 
-    @if ($code_header)
-        {!! $code_header->description !!}
-    @endif
+    <?php if($code_header): ?>
+        <?php echo $code_header->description; ?>
+
+    <?php endif; ?>
 </head>
 
 <body class="template-search">
-    @if ($code_home)
-        {!! $code_home->description !!}
-    @endif
+    <?php if($code_home): ?>
+        <?php echo $code_home->description; ?>
+
+    <?php endif; ?>
     <div class="wrapper home">
-        @include('frontend.partials.header')
-        @yield('content')
+        <?php echo $__env->make('frontend.partials.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->yieldContent('content'); ?>
         <div id="popup-cart-mobile" class="popup-cart-mobile">
             <div class="header-popcart">
                 <div class="top-cart-header">
@@ -572,13 +574,13 @@
                     <div class="cart_btn-close tocontinued">
                         Tiếp tục mua hàng
                     </div>
-                    <a href="{{ route('cart.list') }}" class="checkout">
+                    <a href="<?php echo e(route('cart.list')); ?>" class="checkout">
                         Thanh toán ngay
                     </a>
                 </div>
             </div>
         </div>
-        @include('frontend.partials.footer')
+        <?php echo $__env->make('frontend.partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
     <div class="backdrop__body-backdrop___1rvky"></div>
 
@@ -590,7 +592,7 @@
                     <button
                         class="mfp-close scout-component__modal-navigation-close js-brochure-modal__form-close map-btn-2">
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                            viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome  - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                             <path
                                 d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
                         </svg>
@@ -609,25 +611,25 @@
         });
     </script>
 
-    <script type="text/javascript" src="{{ asset('lib/jquery/jquery-3.2.1.min.js') }} "></script>
+    <script type="text/javascript" src="<?php echo e(asset('lib/jquery/jquery-3.2.1.min.js')); ?> "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script type="text/javascript" src="{{ asset('lib/bootstrap-4.5.3-dist/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('lib/wow/js/wow.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('lib/slick-1.8.1/js/slick.min.js') }}"></script>
-    <script src="{{ asset('lib/sweetalert2/js/sweetalert2.all.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('frontend/js/main.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('frontend/js/load-address.js') }}"></script>
-    <script src="{{ asset('lib/components/js/Cart.js') }}"></script>
-    <script src="{{ asset('lib/components/js/Compare.js') }}"></script>
+    <script type="text/javascript" src="<?php echo e(asset('lib/bootstrap-4.5.3-dist/js/bootstrap.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('lib/wow/js/wow.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('lib/slick-1.8.1/js/slick.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/sweetalert2/js/sweetalert2.all.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('frontend/js/main.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(asset('frontend/js/load-address.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/components/js/Cart.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/components/js/Compare.js')); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="{{ asset('/lib/leaflet/leaflet.js') }}"></script>
-
+    <script src="<?php echo e(asset('/lib/leaflet/leaflet.js')); ?>"></script>
+    
     <script>
-        var myEnvValue = "{{ env('APP_URL') }}";
+        var myEnvValue = "<?php echo e(env('APP_URL')); ?>";
     </script>
 
-    <script src="{{ asset('/frontend/js/map-common.js') }}"></script>
+    <script src="<?php echo e(asset('/frontend/js/map-common.js')); ?>"></script>
 
     <script>
         new WOW().init();
@@ -654,10 +656,11 @@
         });
     </script>
 
-    @yield('js')
-    @if ($code_footer)
-        {!! $code_footer->description !!}
-    @endif
+    <?php echo $__env->yieldContent('js'); ?>
+    <?php if($code_footer): ?>
+        <?php echo $code_footer->description; ?>
+
+    <?php endif; ?>
     <script>
         var currentUrl = window.location.href;
 
@@ -683,3 +686,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\Users\MinhDuc\Desktop\demo22\resources\views/frontend/layouts/main.blade.php ENDPATH**/ ?>

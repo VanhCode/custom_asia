@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\ServiceFullOption;
 use App\Models\Tour;
 use App\Models\MyTrip;
@@ -96,8 +97,73 @@ class AdminMyTripController extends Controller
         $serviceTypes = $this->serviceType->where('active', 1)->get();
         $serviceOther = $this->additionalFee->where('active', 1)->get();
         $serviceIncluded = $this->serviceOther->where('active', 1)->get();
+        $listTour = $this->tour->with('tourDays')->get();
 
-        return view('admin.pages.my-trip.create', compact('booking', 'serviceTour', 'serviceFullTour', 'serviceTypes', 'serviceOther', 'serviceIncluded'));
+        return view('admin.pages.my-trip.create', compact('listTour','booking', 'serviceTour', 'serviceFullTour', 'serviceTypes', 'serviceOther', 'serviceIncluded'));
+    }
+
+    public function addTourPackage(Request $request)
+    {
+        if (count($request->listIds) > 0) {
+            $day_start = $request->day_start + 1;
+            $date_start = Carbon::parse($request->date_start);
+
+            $listDateNext = [];
+
+            for ($i = 0; $i < count($request->listIds); $i++) {
+                if ($date_start->isToday() && $i == 0) {
+                    $listDateNext[] =  $date_start->toDateString();
+                } else {
+                    $listDateNext[] =  $date_start->addDay()->toDateString();
+                }
+            }
+
+            $randoms = [];
+            for ($i = 0; $i < count($request->listIds); $i++) {
+                $random = rand();
+                while (in_array($random, $randoms)) {
+                    $random = rand();
+                }
+                $randoms[] = $random;
+            }
+
+            $listDay = $this->tourDay->whereIn('id', $request->listIds)->get();
+            $numberDay = count($request->listIds);
+
+            $servicesOptions = $this->service->where('parent_id', 0)->get();
+
+            $dayHtml = view('admin.components.my-trip.day', compact(
+                'numberDay',
+                'day_start',
+                'listDateNext',
+                'randoms'
+            ))->render();
+            $dayContentHtml = view('admin.components.my-trip.day-content', compact(
+                'numberDay',
+                'day_start',
+                'listDateNext',
+                'randoms',
+                'randoms',
+                'listDay',
+                'servicesOptions',
+                'request'
+            ))->render();
+
+            return response()->json([
+                'status' => 'success',
+                'dayHtml' => $dayHtml,
+                'dayContentHtml' => $dayContentHtml,
+                'dayLast' => $day_start + count($request->listIds) - 1,
+                'date_Start' => current($listDateNext)
+            ]);
+        }
+        return response()->json([
+            'status' => 'success',
+            'dayHtml' => '',
+            'dayContentHtml' => '',
+            'dayLast' => 0,
+            'date_Start' => ''
+        ]);
     }
 
     public function store(Request $request)
@@ -532,6 +598,7 @@ class AdminMyTripController extends Controller
 
     public function storeCopy(Request $request)
     {
+        dd($request);
         // Tạo bản sao logic tương tự như store
         $this->execute(function () use ($request) {
             $data = [
@@ -573,7 +640,7 @@ class AdminMyTripController extends Controller
 
             // TOUR FULL
             $dataTour = [
-                'name' => $request->tour_name . ' - Copy', // Thêm "- Copy" để phân biệt tour
+                'name' => $request->tour_name, // Thêm "- Copy" để phân biệt tour
                 'image_path' => $request->avatar_path,
                 'trip_id' => $myTrip->id
             ];

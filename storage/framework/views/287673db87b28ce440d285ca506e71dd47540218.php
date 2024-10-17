@@ -1,25 +1,7 @@
-@extends('admin.layouts.main')
-@section('title', 'My Trips')
-@section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin_asset/css/utilities.css') }}">
-    <link rel="stylesheet" href="{{ asset('custom/css/style.css') }}">
-    <style>
-        .box-service-wrap {
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-            margin-bottom: 10px;
-        }
 
-        .box-service-option {
-            display: flex;
-            justify-content: space-between;
-            align-items: center
-        }
-
-        .box-service-option.title {
-            padding: 5px;
-            background-color: bisque
-        }
-    </style>
+<?php $__env->startSection('title', 'My Trips'); ?>
+<?php $__env->startSection('css'); ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('admin_asset/css/utilities.css')); ?>">
     <style>
         main {
             background-color: #eceff4;
@@ -242,15 +224,15 @@
 
         @media (max-width: 992px) {}
     </style>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="content-wrapper">
 
-        @include('admin.partials.content-header', ['name' => 'My Trips', 'key' => 'My Trips'])
+        <?php echo $__env->make('admin.partials.content-header', ['name' => 'My Trips', 'key' => 'My Trips'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <main>
-            <form action="{{ route('admin.my-trip.store') }}" method="POST">
-                @csrf
+            <form action="<?php echo e(route('admin.my-trip.store')); ?>" method="POST">
+                <?php echo csrf_field(); ?>
                 <section class="form">
                     <div style="--w-lg: 9; --w-xs: 12; margin: 0 auto">
                         <h2 class="title__form tt-up ta-center">
@@ -261,23 +243,28 @@
                             <div class="clm" style="--w-lg: 3; --w-md: 6; --w-xs: 12;">
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="tour_name" placeholder="Tên Tour"
-                                        value="{{ isset($booking) ? $booking->name : '' }}">
+                                        value="<?php echo e(isset($myTrip) ? $myTrip->tour_name : ''); ?>" readonly>
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="tour_code" placeholder="Tour Code"
-                                        value="{{ isset($booking) ? $booking->code : '' }}">
+                                        value="<?php echo e(isset($myTrip) ? $myTrip->tour_code : ''); ?>" readonly>
                                 </div>
                                 <div class="form-group">
+
                                     <input class="w-100" min="0" type="number" name="day_number" id="number_day"
-                                        placeholder="Số Ngày" value="0">
+                                        placeholder="Số Ngày"
+                                        value="<?php echo e(isset($myTrip) && !is_null($myTrip->day_number) ? $myTrip->day_number : 0); ?>">
                                 </div>
                                 <div class="form-group">
+                                    <?php
+                                        $dateStart = date('Y-m-d', \Carbon::parse($myTrip->date_start)->timestamp); // Chuyển timestamp sang định dạng Y-m-d
+                                    ?>
                                     <input class="w-100" type="date" name="date_start" id="date_start" min
-                                        placeholder="Ngày Đi Tour">
+                                        placeholder="Ngày Đi Tour" value="<?php echo e($dateStart); ?>">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="tour_class" id=""
-                                        placeholder="Hạng Tour">
+                                        placeholder="Hạng Tour" value="<?php echo e(isset($myTrip) ? $myTrip->tour_class : ''); ?>">
                                 </div>
                             </div>
                             <div class="clm" style="--w-lg: 7; --w-md: 6; --w-xs: 12;">
@@ -287,62 +274,65 @@
                                             <div class="clm" style="--w-lg: 6;">
                                                 <div class="form-group d-flex">
                                                     <input class="flex-1" type="text" name="title_name" id=""
-                                                        placeholder="Xưng danh"
-                                                        value="{{ isset($booking) ? $booking->customer_title : '' }}">
+                                                        placeholder="Xưng danh" readonly
+                                                        value="<?php echo e(isset($myTrip) ? $myTrip->title_name : ''); ?>">
 
                                                 </div>
                                             </div>
                                             <div class="clm" style="--w-lg: 6;">
                                                 <div class="form-group d-flex">
                                                     <input class="flex-1" type="text" name="first_name" id=""
-                                                        placeholder="First Name"
-                                                        value="{{ isset($booking) ? $booking->customer_first_name : '' }}">
+                                                        placeholder="First Name" readonly
+                                                        value="<?php echo e(isset($myTrip) ? $myTrip->first_name : ''); ?>">
 
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <input class="w-100" type="text" name="country" id=""
+                                            <input class="w-100" type="text" name="country" id="" readonly
                                                 placeholder="Quốc Tịch"
-                                                value="{{ isset($booking) ? $booking->country : '' }}">
+                                                value="<?php echo e(isset($myTrip) ? $myTrip->country : ''); ?>">
                                         </div>
                                         <div class="form-group">
-                                            <input class="w-100" type="text" name="phone" id=""
+                                            <input class="w-100" type="text" name="phone" id="" readonly
                                                 placeholder="Điện thoại"
-                                                value="{{ isset($booking) ? $booking->phone : '' }}">
+                                                value="<?php echo e(isset($myTrip) ? $myTrip->phone : ''); ?>">
                                         </div>
                                         <div class="form-group">
-                                            <input class="w-100" type="text" name="email" id=""
-                                                placeholder="Email" value="{{ isset($booking) ? $booking->email : '' }}">
+                                            <input class="w-100" type="text" name="email" id="" readonly
+                                                placeholder="Email" value="<?php echo e(isset($myTrip) ? $myTrip->email : ''); ?>">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="tour_type" id=""
-                                                placeholder="Loại Hình Tour">
+                                                placeholder="Loại Hình Tour"
+                                                value="<?php echo e(isset($myTrip) ? $myTrip->tour_type : ''); ?>">
                                         </div>
                                     </div>
                                     <div class="clm" style="--w-lg: 3;">
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="last_name" id=""
-                                                placeholder="Last Name"
-                                                value="{{ isset($booking) ? $booking->customer_last_name : '' }}">
+                                                placeholder="Last Name" readonly
+                                                value="<?php echo e(isset($myTrip) ? $myTrip->last_name : ''); ?>">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="adult_number" id="number_adult"
-                                                placeholder="Số Người Lớn"
-                                                value="{{ isset($booking) ? $booking->amount_customer : '' }}">
+                                                placeholder="Số Người Lớn" readonly
+                                                value="<?php echo e(isset($myTrip) ? $myTrip->adult_number : ''); ?>">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="number" name="kid_number" id=""
-                                                placeholder="Số Trẻ Con (<12)">
+                                                placeholder="Số Trẻ Con (<12)"
+                                                value="<?php echo e(isset($myTrip) ? $myTrip->kid_number : ''); ?>">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="delegation_list" id=""
-                                                placeholder="Danh sách đoàn">
+                                                placeholder="Danh sách đoàn"
+                                                value="<?php echo e(isset($myTrip) ? $myTrip->delegation_list : ''); ?>">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="source" id=""
-                                                placeholder="Nguồn">
+                                                placeholder="Nguồn" value="<?php echo e(isset($myTrip) ? $myTrip->source : ''); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -350,28 +340,33 @@
                             <div class="clm" style="--w-lg: 2; --w-xs: 12;">
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="market" id=""
-                                        placeholder="Thị Trường">
+                                        placeholder="Thị Trường" value="<?php echo e(isset($myTrip) ? $myTrip->market : ''); ?>">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="department" id=""
-                                        placeholder="Phòng Ban">
+                                        placeholder="Phòng Ban" value="<?php echo e(isset($myTrip) ? $myTrip->department : ''); ?>">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="group" id=""
-                                        placeholder="Đội Nhóm">
+                                        placeholder="Đội Nhóm" value="<?php echo e(isset($myTrip) ? $myTrip->group : ''); ?>">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="language" id=""
-                                        placeholder="Ngôn Ngữ Thị Trường">
+                                        placeholder="Ngôn Ngữ Thị Trường"
+                                        value="<?php echo e(isset($myTrip) ? $myTrip->language : ''); ?>">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="execution_phase" id=""
-                                        placeholder="Giai Đoạn Thực Hiện ">
+                                        placeholder="Giai Đoạn Thực Hiện "
+                                        value="<?php echo e(isset($myTrip) ? $myTrip->execution_phase : ''); ?>">
                                 </div>
                             </div>
                             <div class="clm" style="--w-lg: 12; --w-xs: 12;">
                                 <div class="form-group">
-                                    <textarea class="w-100" name="note" id="" cols="30" rows="6"></textarea>
+                                    <textarea class="w-100" name="note" id="" cols="30" rows="6">
+                                        <?php echo e(isset($myTrip) ? $myTrip->note : ''); ?>
+
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="clm d-flex ai-center js-center" style="--w-lg: 12;  --w-xs: 12;">
@@ -388,9 +383,9 @@
                                     <button type="button">Xem yêu cầu gốc</button>
                                 </div>
                             </div>
-                            {{-- <div class="check-btn ta-center">
-                                <button type="button">Nhân bản Tour Này</button>
-                            </div> --}}
+                            <div class="check-btn ta-center">
+                                <button>Nhân bản Tour Này</button>
+                            </div>
                         </div>
                         <div class="clm" style="--w-xl: 8;  --w-md: 6; --w-xs: 12;">
                             <div class="check-img" id="thumbnail-wrapper">
@@ -413,13 +408,13 @@
                         </div>
                         <div class="clm" style="--w-xl: 2;  --w-md: 3; --w-xs: 12;">
                             <div class="check-btn ta-center">
-                                <button type="button" class="check-btn--bg">Export Word</button>
+                                <button class="check-btn--bg">Export Word</button>
                             </div>
                             <div class="check-btn ta-center">
-                                <button type="button" class="check-btn--bg">Export PDF</button>
+                                <button class="check-btn--bg">Export PDF</button>
                             </div>
                             <div class="check-btn ta-center">
-                                <button type="button" class="check-btn--bg">Send Link</button>
+                                <button class="check-btn--bg">Send Link</button>
                             </div>
                         </div>
                     </div>
@@ -462,16 +457,16 @@
                         <div class="clm" style="--w-xl: 2; --w-md: 3; --w-xs: 12;">
                             <div class="list-tour-ad-left">
                                 <ul class="list-tour-ad-text" id="list-tour-day">
+                                    
                                 </ul>
                                 <div class="check-btn ta-center btn-add-day">
-                                    <button type="button" class="">Thêm ngày</button>
-                                </div>
-                                <div class="check-btn ta-center add-tour-package">
-                                    <button type="button" class="trigger-modal-btn" data-type="create">Thêm gói
-                                        tour</button>
+                                    <button class="">Thêm ngày</button>
                                 </div>
                                 <div class="check-btn ta-center">
-                                    <button type="button" class="">Coppy Tour từ code khác</button>
+                                    <button class="">Thêm gói tour</button>
+                                </div>
+                                <div class="check-btn ta-center">
+                                    <button class="">Coppy Tour từ code khác</button>
                                 </div>
                             </div>
                         </div>
@@ -523,32 +518,33 @@
                                             </tr>
                                         </tfoot>
                                     </table>
-                                    @if (isset($serviceTypes) && $serviceTypes->count() > 0)
+                                    <?php if(isset($serviceTypes) && $serviceTypes->count() > 0): ?>
                                         <table class="w-100  table-2">
                                             <tbody>
-                                                @foreach ($serviceTypes as $type)
+                                                <?php $__currentLoopData = $serviceTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <tr>
                                                         <td>
-                                                            Chi phí {{ $type->name }}
+                                                            Chi phí <?php echo e($type->name); ?>
+
                                                             <input type="hidden" name="service_type_id[]"
-                                                                value="{{ $type->id }}">
+                                                                value="<?php echo e($type->id); ?>">
                                                         </td>
                                                         <td class="ta-center" style="width: 450px;">
                                                             <input type="number" class="price-tour-box-2-percent"
                                                                 value="0" min="0" data-limit="0"
                                                                 name="service_type_percent[]"
-                                                                data-target="price-tour-box-2-percent-{{ $type->id }}"
-                                                                data-input="{{ $type->id }}">%
+                                                                data-target="price-tour-box-2-percent-<?php echo e($type->id); ?>"
+                                                                data-input="<?php echo e($type->id); ?>">%
                                                         </td>
-                                                        <td class="ta-center price-tour-box-2 price-tour-box-2-percent-{{ $type->id }}"
-                                                            data-target="price-tour-box-2-{{ $type->id }}"
+                                                        <td class="ta-center price-tour-box-2 price-tour-box-2-percent-<?php echo e($type->id); ?>"
+                                                            data-target="price-tour-box-2-<?php echo e($type->id); ?>"
                                                             style="width: 130px;" data-price="0"
-                                                            data-input-hidden="service_type_price-{{ $type->id }}">0
+                                                            data-input-hidden="service_type_price-<?php echo e($type->id); ?>">0
                                                             VND</td>
                                                         <input type="hidden" name="service_type_price[]"
-                                                            id="service_type_price-{{ $type->id }}">
+                                                            id="service_type_price-<?php echo e($type->id); ?>">
                                                     </tr>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -570,7 +566,7 @@
                                                 </tr>
                                             </tfoot>
                                         </table>
-                                    @endif
+                                    <?php endif; ?>
                                     <table class="w-100 table-2 service-other-table">
                                         <tbody>
 
@@ -626,6 +622,7 @@
                                                     </thead>
 
                                                     <tbody class="service-included-body">
+                                                        
                                                     </tbody>
 
 
@@ -655,7 +652,7 @@
                         <div class="clm" style="--w-xl:1.5;  --w-md: 12; --w-xs: 12;">
                             <div class="list-tour-ad-right">
                                 <div class="check-btn ta-center">
-                                    <button type="button" class="tt-up btn-view-all">View all days +</button>
+                                    <button class="tt-up btn-view-all">View all days +</button>
                                 </div>
                             </div>
                         </div>
@@ -672,8 +669,9 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <strong>{{ $booking->name }}</strong><br>
-                        {!! $booking->plantrip !!}
+                        <strong><?php echo e($myTrip->name); ?></strong><br>
+                        <?php echo $myTrip->plantrip; ?>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -683,89 +681,31 @@
         </div>
         <!-- End Model Info -->
     </div>
-
-    <!-- Modal -->
-    <div class="custom-modal-overlay" id="custom-modal">
-        <form id="customForm" action="" method="POST" data-type="create">
-            <div class="custom-modal" style="width:800px">
-                <div class="custom-modal-header">
-                    <h2 class="custom-modal-title"> Chọn gói tour</h2>
-                    <span class="custom-close-btn">&times;</span>
-                </div>
-                <div class="custom-modal-body">
-                    <div class="row">
-                        <div class="col-6">
-                            @if (isset($listTour) && $listTour->count() > 0)
-                                @foreach ($listTour as $tour)
-                                    <div class="form-check">
-                                        <input class="form-check-input radio-tour" type="radio"
-                                            id="tour_{{ $tour->id }}" value="{{ $tour->id }}" name="tour_id">
-                                        <label class="form-check-label" for="tour_{{ $tour->id }}">
-                                            {{ $tour->tourDays->count() }} days - {{ $tour->name }}
-                                        </label>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                        <div class="col-6">
-                            @if (isset($listTour) && $listTour->count() > 0)
-                                @foreach ($listTour as $tour)
-                                    <div class="form-check tour-option d-none tour_{{ $tour->id }}">
-                                        @if ($tour->tourDays->count() > 0)
-                                            @foreach ($tour->tourDays()->get() as $day)
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="{{ $day->id }}" value="{{ $day }}">
-                                                <label class="form-check-label" for="{{ $day->id }}">
-                                                    Day {{ $day->day_number }}
-                                                </label>
-                                            @endforeach
-                                        @else
-                                            <p>Chưa có ngày nào</p>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div>
-
-                </div>
-                <div class="custom-modal-footer">
-                    <button type="button" class="custom-btn custom-btn-confirm">Xác nhận</button>
-                </div>
-            </div>
-        </form>
-    </div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
     <script>
-        const serviceFullTour = @json($serviceFullTour);
-        const serviceTour = @json($serviceTour);
-        const serviceIncluded = @json($serviceIncluded);
+        const serviceFullTour = <?php echo json_encode($serviceFullTour, 15, 512) ?>;
+        const serviceTour = <?php echo json_encode($serviceTour, 15, 512) ?>;
+        const serviceIncluded = <?php echo json_encode($serviceIncluded, 15, 512) ?>;
 
-        const routeAddTourPackage = '{{ route('admin.my-trip.addTourPackage') }}';
+        const routeGetChild = '<?php echo e(route('admin.service-full.getChild', ['id' => ':id'])); ?>';
+        const routeGetOptionByServiceId = '<?php echo e(route('admin.service-full-option.getOptionByServiceId', ['id' => ':id'])); ?>';
 
-        const routeGetChild = '{{ route('admin.service-full.getChild', ['id' => ':id']) }}';
-        const routeGetOptionByServiceId = '{{ route('admin.service-full-option.getOptionByServiceId', ['id' => ':id']) }}';
-
-        const routeServiceGetChild = '{{ route('admin.service.getChild', ['id' => ':id']) }}';
+        const routeServiceGetChild = '<?php echo e(route('admin.service.getChild', ['id' => ':id'])); ?>';
         const routeServiceGetOptionByServiceId =
-            '{{ route('admin.service-option.getOptionByServiceId', ['id' => ':id']) }}';
+            '<?php echo e(route('admin.service-option.getOptionByServiceId', ['id' => ':id'])); ?>';
 
-        const serviceOther = @json($serviceOther);
+        const serviceOther = <?php echo json_encode($serviceOther, 15, 512) ?>;
     </script>
-    <script src="{{ asset('custom/js/main.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/helper.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/function.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/file-manager.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/service-all-tour.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/day-service.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/total-price-box2.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/service-other.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/service-include.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/main.js') }}"></script>
-    <script src="{{ asset('custom/js/my-trip/add-tour-pakage.js') }}"></script>
+    <script src="<?php echo e(asset('custom/js/my-trip/helper.js')); ?>"></script>
+    <script src="<?php echo e(asset('custom/js/my-trip/function.js')); ?>"></script>
+    <script src="<?php echo e(asset('custom/js/my-trip/file-manager.js')); ?>"></script>
+    <script src="<?php echo e(asset('custom/js/my-trip/service-all-tour.js')); ?>"></script>
+    <script src="<?php echo e(asset('custom/js/my-trip/day-service.js')); ?>"></script>
+    <script src="<?php echo e(asset('custom/js/my-trip/total-price-box2.js')); ?>"></script>
+    <script src="<?php echo e(asset('custom/js/my-trip/service-other.js')); ?>"></script>
+    <script src="<?php echo e(asset('custom/js/my-trip/service-include.js')); ?>"></script>
+    <script src="<?php echo e(asset('custom/js/my-trip/main.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 
-    <script>
-        document.getElementById('date_start').setAttribute('value', today);
-    </script>
-@endsection
+<?php echo $__env->make('admin.layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\MinhDuc\Desktop\demo22\resources\views/admin/pages/my-trip/edit.blade.php ENDPATH**/ ?>
