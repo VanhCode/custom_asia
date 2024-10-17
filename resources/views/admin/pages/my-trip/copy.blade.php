@@ -231,9 +231,9 @@
         @include('admin.partials.content-header', ['name' => 'My Trips', 'key' => 'My Trips'])
 
         <main>
-            <form action="{{ route('admin.my-trip.update', $myTrip->id) }}" method="POST">
+            <form action="{{ route('admin.my-trip.storeCopy', $myTrip->id) }}" method="POST">
                 @csrf
-                @method('PUT')
+                @method('POST')
                 <section class="form">
                     <div style="--w-lg: 9; --w-xs: 12; margin: 0 auto">
                         <h2 class="title__form tt-up ta-center">
@@ -386,10 +386,6 @@
                                     <button type="button">Xem yêu cầu gốc</button>
                                 </div>
                             </div>
-                            <div class="check-btn ta-center">
-                                <a href="{{ route('admin.my-trip.copy', $myTrip->id) }}" target="_blank">Nhân bản Tour
-                                    Này</a>
-                            </div>
                         </div>
                         <div class="clm" style="--w-xl: 8;  --w-md: 6; --w-xs: 12;">
                             <div class="check-img" id="thumbnail-wrapper">
@@ -404,7 +400,7 @@
                                                 <i class="fa fa-picture-o"></i> Choose
                                             </a>
                                         </span>
-                                        <input id="img-thumbnail-input" class="form-control" type="text"
+                                        <input id="img-thumbnail-input" value="{{ !empty($myTrip->tour->image_path) ? $myTrip->tour->image_path : '' }}" class="form-control" type="text"
                                                name="avatar_path">
                                     </div>
                                 </div>
@@ -537,9 +533,6 @@
                                 </div>
                                 <div class="check-btn ta-center">
                                     <button class="">Thêm gói tour</button>
-                                </div>
-                                <div class="check-btn ta-center">
-                                    <button class="">Coppy Tour từ code khác</button>
                                 </div>
                             </div>
                         </div>

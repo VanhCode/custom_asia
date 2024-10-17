@@ -538,9 +538,6 @@
                                 <div class="check-btn ta-center">
                                     <button class="">Thêm gói tour</button>
                                 </div>
-                                <div class="check-btn ta-center">
-                                    <button class="">Coppy Tour từ code khác</button>
-                                </div>
                             </div>
                         </div>
                         <div class="clm" style="--w-xl: 8.5; --w-md: 7; --w-xs: 12;">

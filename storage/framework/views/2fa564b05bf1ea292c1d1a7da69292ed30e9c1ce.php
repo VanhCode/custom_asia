@@ -53,8 +53,8 @@
 
                         <form action="<?php echo e(route('admin.service-option.saveInformation')); ?>" method="post">
                             <?php echo csrf_field(); ?>
-                            <input type="text" value="<?php echo e(request()->service_id > 0 ? request()->service_id : ''); ?>" name="service_id">
-                            <input type="text" value="<?php echo e(!empty($serviceInformation->id) ? $serviceInformation->id : ''); ?>" name="service_information_id">
+                            <input type="hidden" value="<?php echo e(request()->service_id > 0 ? request()->service_id : ''); ?>" name="service_id">
+                            <input type="hidden" value="<?php echo e(!empty($serviceInformation->id) ? $serviceInformation->id : ''); ?>" name="service_information_id">
                             <div class="row mt-3 mb-3">
                                 <div class="col-2">
                                     <select name="city_id" class="select2  w-100" id="">

@@ -74,8 +74,7 @@
 
         td,
         th {
-            border: 2px solid #ebf0f4;
-            ;
+            border: 2px solid #ebf0f4;;
         }
 
         table {
@@ -240,7 +239,8 @@
             padding: 0px 15px;
         }
 
-        @media (max-width: 992px) {}
+        @media (max-width: 992px) {
+        }
     </style>
 @endsection
 @section('content')
@@ -261,23 +261,23 @@
                             <div class="clm" style="--w-lg: 3; --w-md: 6; --w-xs: 12;">
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="tour_name" placeholder="Tên Tour"
-                                        value="{{ isset($booking) ? $booking->name : '' }}">
+                                           value="{{ isset($booking) ? $booking->name : '' }}">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="tour_code" placeholder="Tour Code"
-                                        value="{{ isset($booking) ? $booking->code : '' }}">
+                                           value="{{ isset($booking) ? $booking->code : '' }}">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" min="0" type="number" name="day_number" id="number_day"
-                                        placeholder="Số Ngày" value="0">
+                                           placeholder="Số Ngày" value="0">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="date" name="date_start" id="date_start" min
-                                        placeholder="Ngày Đi Tour">
+                                           placeholder="Ngày Đi Tour">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="tour_class" id=""
-                                        placeholder="Hạng Tour">
+                                           placeholder="Hạng Tour">
                                 </div>
                             </div>
                             <div class="clm" style="--w-lg: 7; --w-md: 6; --w-xs: 12;">
@@ -287,16 +287,16 @@
                                             <div class="clm" style="--w-lg: 6;">
                                                 <div class="form-group d-flex">
                                                     <input class="flex-1" type="text" name="title_name" id=""
-                                                        placeholder="Xưng danh"
-                                                        value="{{ isset($booking) ? $booking->customer_title : '' }}">
+                                                           placeholder="Xưng danh"
+                                                           value="{{ isset($booking) ? $booking->customer_title : '' }}">
 
                                                 </div>
                                             </div>
                                             <div class="clm" style="--w-lg: 6;">
                                                 <div class="form-group d-flex">
                                                     <input class="flex-1" type="text" name="first_name" id=""
-                                                        placeholder="First Name"
-                                                        value="{{ isset($booking) ? $booking->customer_first_name : '' }}">
+                                                           placeholder="First Name"
+                                                           value="{{ isset($booking) ? $booking->customer_first_name : '' }}">
 
                                                 </div>
                                             </div>
@@ -304,45 +304,46 @@
 
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="country" id=""
-                                                placeholder="Quốc Tịch"
-                                                value="{{ isset($booking) ? $booking->country : '' }}">
+                                                   placeholder="Quốc Tịch"
+                                                   value="{{ isset($booking) ? $booking->country : '' }}">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="phone" id=""
-                                                placeholder="Điện thoại"
-                                                value="{{ isset($booking) ? $booking->phone : '' }}">
+                                                   placeholder="Điện thoại"
+                                                   value="{{ isset($booking) ? $booking->phone : '' }}">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="email" id=""
-                                                placeholder="Email" value="{{ isset($booking) ? $booking->email : '' }}">
+                                                   placeholder="Email"
+                                                   value="{{ isset($booking) ? $booking->email : '' }}">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="tour_type" id=""
-                                                placeholder="Loại Hình Tour">
+                                                   placeholder="Loại Hình Tour">
                                         </div>
                                     </div>
                                     <div class="clm" style="--w-lg: 3;">
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="last_name" id=""
-                                                placeholder="Last Name"
-                                                value="{{ isset($booking) ? $booking->customer_last_name : '' }}">
+                                                   placeholder="Last Name"
+                                                   value="{{ isset($booking) ? $booking->customer_last_name : '' }}">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="adult_number" id="number_adult"
-                                                placeholder="Số Người Lớn"
-                                                value="{{ isset($booking) ? $booking->amount_customer : '' }}">
+                                                   placeholder="Số Người Lớn"
+                                                   value="{{ isset($booking) ? $booking->amount_customer : '' }}">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="number" name="kid_number" id=""
-                                                placeholder="Số Trẻ Con (<12)">
+                                                   placeholder="Số Trẻ Con (<12)">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="delegation_list" id=""
-                                                placeholder="Danh sách đoàn">
+                                                   placeholder="Danh sách đoàn">
                                         </div>
                                         <div class="form-group">
                                             <input class="w-100" type="text" name="source" id=""
-                                                placeholder="Nguồn">
+                                                   placeholder="Nguồn">
                                         </div>
                                     </div>
                                 </div>
@@ -350,23 +351,23 @@
                             <div class="clm" style="--w-lg: 2; --w-xs: 12;">
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="market" id=""
-                                        placeholder="Thị Trường">
+                                           placeholder="Thị Trường">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="department" id=""
-                                        placeholder="Phòng Ban">
+                                           placeholder="Phòng Ban">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="group" id=""
-                                        placeholder="Đội Nhóm">
+                                           placeholder="Đội Nhóm">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="language" id=""
-                                        placeholder="Ngôn Ngữ Thị Trường">
+                                           placeholder="Ngôn Ngữ Thị Trường">
                                 </div>
                                 <div class="form-group">
                                     <input class="w-100" type="text" name="execution_phase" id=""
-                                        placeholder="Giai Đoạn Thực Hiện ">
+                                           placeholder="Giai Đoạn Thực Hiện ">
                                 </div>
                             </div>
                             <div class="clm" style="--w-lg: 12; --w-xs: 12;">
@@ -395,18 +396,18 @@
                         <div class="clm" style="--w-xl: 8;  --w-md: 6; --w-xs: 12;">
                             <div class="check-img" id="thumbnail-wrapper">
                                 <img class="d-block img-thumbnail"
-                                    src="https://cdn.icon-icons.com/icons2/1993/PNG/512/add_circle_create_expand_new_plus_icon_123218.png"
-                                    alt="">
+                                     src="https://cdn.icon-icons.com/icons2/1993/PNG/512/add_circle_create_expand_new_plus_icon_123218.png"
+                                     alt="">
                                 <div style="display: none">
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <a data-input="img-thumbnail-input" data-preview="img-thumbnail"
-                                                class="btn btn-primary" id="img-thumbnail">
+                                               class="btn btn-primary" id="img-thumbnail">
                                                 <i class="fa fa-picture-o"></i> Choose
                                             </a>
                                         </span>
                                         <input id="img-thumbnail-input" class="form-control" type="text"
-                                            name="avatar_path">
+                                               name="avatar_path">
                                     </div>
                                 </div>
                             </div>
@@ -431,25 +432,25 @@
                                 <table class="w-100">
 
                                     <thead>
-                                        <tr>
-                                            <th style="width: 45px;cursor: pointer" class="btn-add">+</th>
-                                            <th class="tt-up">Gói giá dịch vụ cho cả tour</th>
-                                            <th class="ta-center tt-up">Gói giá dịch vụ cho cả tour</th>
-                                            <th class="ta-center tt-up">Tên gói</th>
-                                            <th class="ta-center tt-up">Tổng giá</th>
-                                        </tr>
+                                    <tr>
+                                        <th style="width: 45px;cursor: pointer" class="btn-add">+</th>
+                                        <th class="tt-up">Gói giá dịch vụ cho cả tour</th>
+                                        <th class="ta-center tt-up">Gói giá dịch vụ cho cả tour</th>
+                                        <th class="ta-center tt-up">Tên gói</th>
+                                        <th class="ta-center tt-up">Tổng giá</th>
+                                    </tr>
                                     </thead>
 
                                     <tbody>
                                     </tbody>
 
                                     <tfoot>
-                                        <tr style="height: 10px;"></tr>
-                                        <tr>
-                                            <th colspan="3" class="ta-left">Tổng giá</th>
-                                            <th></th>
-                                            <th class="ta-center service-full-total-price">0 VND</th>
-                                        </tr>
+                                    <tr style="height: 10px;"></tr>
+                                    <tr>
+                                        <th colspan="3" class="ta-left">Tổng giá</th>
+                                        <th></th>
+                                        <th class="ta-center service-full-total-price">0 VND</th>
+                                    </tr>
                                     </tfoot>
 
                                 </table>
@@ -468,10 +469,13 @@
                                 </div>
                                 <div class="check-btn ta-center add-tour-package">
                                     <button type="button" class="trigger-modal-btn" data-type="create">Thêm gói
-                                        tour</button>
+                                        tour
+                                    </button>
                                 </div>
                                 <div class="check-btn ta-center">
-                                    <button type="button" class="">Coppy Tour từ code khác</button>
+                                    <button type="button" data-toggle="modal" data-target="#copyTourByCode" class="">
+                                        Coppy Tour từ code khác
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -482,92 +486,93 @@
                                     </div>
                                     <table class="w-100 table-2">
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    Tổng chi phí chung
-                                                </td>
-                                                <td class="ta-center" style="width: 450px;"></td>
-                                                <td class="ta-center total-price-box-1 service-full-total-price"
-                                                    style="width: 130px;" data-input-hidden="overhead_costs">
-                                                    0 VND
-                                                </td>
-                                                <input type="hidden" name="overhead_costs" id="overhead_costs">
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Tổng chi phí dịch vụ lẻ từng ngày
-                                                </td>
-                                                <td class="ta-center" style="width: 450px;"></td>
-                                                <td class="ta-center total-price-box-1 service-individual-total-price"
-                                                    data-input-hidden="individual_costs">0
-                                                    VND
-                                                </td>
-                                                <input type="hidden" name="individual_costs" id="individual_costs">
-                                            </tr>
+                                        <tr>
+                                            <td>
+                                                Tổng chi phí chung
+                                            </td>
+                                            <td class="ta-center" style="width: 450px;"></td>
+                                            <td class="ta-center total-price-box-1 service-full-total-price"
+                                                style="width: 130px;" data-input-hidden="overhead_costs">
+                                                0 VND
+                                            </td>
+                                            <input type="hidden" name="overhead_costs" id="overhead_costs">
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Tổng chi phí dịch vụ lẻ từng ngày
+                                            </td>
+                                            <td class="ta-center" style="width: 450px;"></td>
+                                            <td class="ta-center total-price-box-1 service-individual-total-price"
+                                                data-input-hidden="individual_costs">0
+                                                VND
+                                            </td>
+                                            <input type="hidden" name="individual_costs" id="individual_costs">
+                                        </tr>
                                         </tbody>
                                         <tfoot>
-                                            <tr>
-                                                <th class="ta-left">Chi Phí tour
-                                                </th>
-                                                <th>
-                                                    <input type="number" value="0" min="0"
-                                                        class="result-price-box-1-percent" name="tour_costs_percent">%
-                                                </th>
-                                                <th class="ta-center total-price-box result-price-box-1"
-                                                    data-hidden="input-hidden-box-1" data-limit="0" data-price="0"
-                                                    data-input-hidden="tour_costs">0 VND
-                                                </th>
-                                                <input type="hidden" class="price-total-item input-hidden-box-1"
-                                                    data-price="0">
-                                                <input type="hidden" name="tour_costs" id="tour_costs">
-                                            </tr>
+                                        <tr>
+                                            <th class="ta-left">Chi Phí tour
+                                            </th>
+                                            <th>
+                                                <input type="number" value="0" min="0"
+                                                       class="result-price-box-1-percent" name="tour_costs_percent">%
+                                            </th>
+                                            <th class="ta-center total-price-box result-price-box-1"
+                                                data-hidden="input-hidden-box-1" data-limit="0" data-price="0"
+                                                data-input-hidden="tour_costs">0 VND
+                                            </th>
+                                            <input type="hidden" class="price-total-item input-hidden-box-1"
+                                                   data-price="0">
+                                            <input type="hidden" name="tour_costs" id="tour_costs">
+                                        </tr>
                                         </tfoot>
                                     </table>
                                     @if (isset($serviceTypes) && $serviceTypes->count() > 0)
                                         <table class="w-100  table-2">
                                             <tbody>
-                                                @foreach ($serviceTypes as $type)
-                                                    <tr>
-                                                        <td>
-                                                            Chi phí {{ $type->name }}
-                                                            <input type="hidden" name="service_type_id[]"
-                                                                value="{{ $type->id }}">
-                                                        </td>
-                                                        <td class="ta-center" style="width: 450px;">
-                                                            <input type="number" class="price-tour-box-2-percent"
-                                                                value="0" min="0" data-limit="0"
-                                                                name="service_type_percent[]"
-                                                                data-target="price-tour-box-2-percent-{{ $type->id }}"
-                                                                data-input="{{ $type->id }}">%
-                                                        </td>
-                                                        <td class="ta-center price-tour-box-2 price-tour-box-2-percent-{{ $type->id }}"
-                                                            data-target="price-tour-box-2-{{ $type->id }}"
-                                                            style="width: 130px;" data-price="0"
-                                                            data-input-hidden="service_type_price-{{ $type->id }}">0
-                                                            VND</td>
-                                                        <input type="hidden" name="service_type_price[]"
-                                                            id="service_type_price-{{ $type->id }}">
-                                                    </tr>
-                                                @endforeach
+                                            @foreach ($serviceTypes as $type)
+                                                <tr>
+                                                    <td>
+                                                        Chi phí {{ $type->name }}
+                                                        <input type="hidden" name="service_type_id[]"
+                                                               value="{{ $type->id }}">
+                                                    </td>
+                                                    <td class="ta-center" style="width: 450px;">
+                                                        <input type="number" class="price-tour-box-2-percent"
+                                                               value="0" min="0" data-limit="0"
+                                                               name="service_type_percent[]"
+                                                               data-target="price-tour-box-2-percent-{{ $type->id }}"
+                                                               data-input="{{ $type->id }}">%
+                                                    </td>
+                                                    <td class="ta-center price-tour-box-2 price-tour-box-2-percent-{{ $type->id }}"
+                                                        data-target="price-tour-box-2-{{ $type->id }}"
+                                                        style="width: 130px;" data-price="0"
+                                                        data-input-hidden="service_type_price-{{ $type->id }}">0
+                                                        VND
+                                                    </td>
+                                                    <input type="hidden" name="service_type_price[]"
+                                                           id="service_type_price-{{ $type->id }}">
+                                                </tr>
+                                            @endforeach
                                             </tbody>
                                             <tfoot>
-                                                <tr>
-                                                    <th class="ta-left ">Giá tour
-                                                    </th>
-                                                    <th class="ta-center total-price-tour-box-2-one" data-price="0"
-                                                        data-input-hidden="total_price_tour_one">0 VND
-                                                        /
-                                                        NGƯỜI
-                                                    </th>
-                                                    <input type="hidden" name="tour_price_per_person"
-                                                        id="total_price_tour_one">
-                                                    <th class="ta-center price-total-item total-price-box total-price-tour-box-2"
-                                                        data-target="total-price-tour-box-2-one" data-price="0"
-                                                        data-input-hidden="total_price_tour">
-                                                        0 VND
-                                                    </th>
-                                                    <input type="hidden" name="tour_price" id="total_price_tour">
-                                                </tr>
+                                            <tr>
+                                                <th class="ta-left ">Giá tour
+                                                </th>
+                                                <th class="ta-center total-price-tour-box-2-one" data-price="0"
+                                                    data-input-hidden="total_price_tour_one">0 VND
+                                                    /
+                                                    NGƯỜI
+                                                </th>
+                                                <input type="hidden" name="tour_price_per_person"
+                                                       id="total_price_tour_one">
+                                                <th class="ta-center price-total-item total-price-box total-price-tour-box-2"
+                                                    data-target="total-price-tour-box-2-one" data-price="0"
+                                                    data-input-hidden="total_price_tour">
+                                                    0 VND
+                                                </th>
+                                                <input type="hidden" name="tour_price" id="total_price_tour">
+                                            </tr>
                                             </tfoot>
                                         </table>
                                     @endif
@@ -576,41 +581,41 @@
 
                                         </tbody>
                                         <tfoot>
-                                            <tr>
-                                                <th class="add-btn-service-other">+</th>
-                                                <th class="ta-left">Phụ thu
-                                                </th>
-                                                <th class="ta-center total-price-service-other-one"
-                                                    data-input-hidden="total_price_other_one">
-                                                    0 VND/ người
-                                                </th>
-                                                <input type="hidden" name="surcharge_per_person"
-                                                    id="total_price_other_one">
-                                                <th class="ta-center price-total-item total-price-service-other"
-                                                    data-input-hidden="total_price_other">
-                                                    0 VND
-                                                </th>
-                                                <input type="hidden" name="surcharge" id="total_price_other">
-                                            </tr>
+                                        <tr>
+                                            <th class="add-btn-service-other">+</th>
+                                            <th class="ta-left">Phụ thu
+                                            </th>
+                                            <th class="ta-center total-price-service-other-one"
+                                                data-input-hidden="total_price_other_one">
+                                                0 VND/ người
+                                            </th>
+                                            <input type="hidden" name="surcharge_per_person"
+                                                   id="total_price_other_one">
+                                            <th class="ta-center price-total-item total-price-service-other"
+                                                data-input-hidden="total_price_other">
+                                                0 VND
+                                            </th>
+                                            <input type="hidden" name="surcharge" id="total_price_other">
+                                        </tr>
                                         </tfoot>
                                     </table>
                                     <table class="w-100 table-3">
                                         <tfoot>
-                                            <tr>
-                                                <th class="ta-left">Tổng chi phí
-                                                </th>
-                                                <th style="width: 450px;" class="ta-center total-price-final-one"
-                                                    data-input-hidden="total_price_final_one">
-                                                    0 VND/ người
-                                                </th>
-                                                <input type="hidden" name="final_cost_per_person"
-                                                    id="total_price_final_one">
-                                                <th class="ta-center total-price-final" style="width: 130px;"
-                                                    data-input-hidden="total_price_final">
-                                                    0 VND
-                                                </th>
-                                                <input type="hidden" name="final_cost" id="total_price_final">
-                                            </tr>
+                                        <tr>
+                                            <th class="ta-left">Tổng chi phí
+                                            </th>
+                                            <th style="width: 450px;" class="ta-center total-price-final-one"
+                                                data-input-hidden="total_price_final_one">
+                                                0 VND/ người
+                                            </th>
+                                            <input type="hidden" name="final_cost_per_person"
+                                                   id="total_price_final_one">
+                                            <th class="ta-center total-price-final" style="width: 130px;"
+                                                data-input-hidden="total_price_final">
+                                                0 VND
+                                            </th>
+                                            <input type="hidden" name="final_cost" id="total_price_final">
+                                        </tr>
                                         </tfoot>
                                     </table>
                                     <div class="table-service">
@@ -619,10 +624,10 @@
                                                 <table class="w-100">
 
                                                     <thead>
-                                                        <tr>
-                                                            <th style="width: 45px;" class="btn-add-included">+</th>
-                                                            <th class="tt-up">Dịch vụ bao gồm</th>
-                                                        </tr>
+                                                    <tr>
+                                                        <th style="width: 45px;" class="btn-add-included">+</th>
+                                                        <th class="tt-up">Dịch vụ bao gồm</th>
+                                                    </tr>
                                                     </thead>
 
                                                     <tbody class="service-included-body">
@@ -635,10 +640,10 @@
                                                 <table class="w-100">
 
                                                     <thead>
-                                                        <tr>
-                                                            <th style="width: 45px;" class="btn-add-excluding">+</th>
-                                                            <th class="tt-up">Dịch vụ không bao gồm</th>
-                                                        </tr>
+                                                    <tr>
+                                                        <th style="width: 45px;" class="btn-add-excluding">+</th>
+                                                        <th class="tt-up">Dịch vụ không bao gồm</th>
+                                                    </tr>
                                                     </thead>
 
                                                     <tbody class="service-excluding-body">
@@ -682,6 +687,65 @@
             </div>
         </div>
         <!-- End Model Info -->
+
+        <!-- Modal Copy Tour từ code khác -->
+        <div id="copyTourByCode" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable"> <!-- Thêm lớp modal-lg để modal lớn hơn -->
+                <!-- Nội dung modal -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Copy tour từ code khác</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding: 24px 32px !important;">
+                        @if(!empty($myTrips))
+                            @foreach($myTrips as $key => $item)
+                                <div class="row" style="border:1px solid #ccc; border-radius: 4px; padding: 20px; margin-bottom: 20px;">
+                                    <div class="col-12">
+                                        <div class="d-flex flex-column">
+                                            <div class="content-text d-flex justify-content-between">
+                                                <div>
+                                                    <h5>Trip: {{ $item->tour_name }}</h5>
+                                                </div>
+                                                <div>
+                                                    <a target="_blank" href="{{ route('admin.my-trip.copy', ['id' => $item->id]) }}">Copy Tour</a>
+                                                </div>
+                                            </div>
+                                            <div class="content-text">
+                                                <span>Number adult: {{ $item->adult_number }}</span>
+                                            </div>
+                                            <div class="content-text">
+                                                <span>Customer Name: {{ $item->title_name }} {{ $item->first_name }} {{ $item->last_name }}</span>
+                                            </div>
+                                            <div class="content-text">
+                                                <span>Number Day: {{ $item->day_number ?? '( No data )' }}</span>
+                                            </div>
+                                            <div class="content-text">
+                                                <span>Start Date: {{ \Carbon::parse($item->date_start)->format('m/d/Y') }}</span>
+                                            </div>
+                                            <div class="content-text">
+                                                <span>Total Cost: {{ number_format($item->final_cost) }} VND</span>
+                                            </div>
+                                            <div class="content-text">
+                                                <span>Total Cost/ Person: {{ number_format($item->final_cost_per_person) }} VND</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- End Model Copy Tour từ code khác -->
     </div>
 
     <!-- Modal -->
@@ -699,7 +763,7 @@
                                 @foreach ($listTour as $tour)
                                     <div class="form-check">
                                         <input class="form-check-input radio-tour" type="radio"
-                                            id="tour_{{ $tour->id }}" value="{{ $tour->id }}" name="tour_id">
+                                               id="tour_{{ $tour->id }}" value="{{ $tour->id }}" name="tour_id">
                                         <label class="form-check-label" for="tour_{{ $tour->id }}">
                                             {{ $tour->tourDays->count() }} days - {{ $tour->name }}
                                         </label>
@@ -714,7 +778,7 @@
                                         @if ($tour->tourDays->count() > 0)
                                             @foreach ($tour->tourDays()->get() as $day)
                                                 <input class="form-check-input" type="checkbox" value=""
-                                                    id="{{ $day->id }}" value="{{ $day }}">
+                                                       id="{{ $day->id }}" value="{{ $day }}">
                                                 <label class="form-check-label" for="{{ $day->id }}">
                                                     Day {{ $day->day_number }}
                                                 </label>

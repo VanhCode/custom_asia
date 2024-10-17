@@ -98,8 +98,9 @@ class AdminMyTripController extends Controller
         $serviceOther = $this->additionalFee->where('active', 1)->get();
         $serviceIncluded = $this->serviceOther->where('active', 1)->get();
         $listTour = $this->tour->with('tourDays')->get();
+        $myTrips = $this->myTrip->orderBy('id', 'desc')->get();
 
-        return view('admin.pages.my-trip.create', compact('listTour','booking', 'serviceTour', 'serviceFullTour', 'serviceTypes', 'serviceOther', 'serviceIncluded'));
+        return view('admin.pages.my-trip.create', compact('myTrips','listTour','booking', 'serviceTour', 'serviceFullTour', 'serviceTypes', 'serviceOther', 'serviceIncluded'));
     }
 
     public function addTourPackage(Request $request)
@@ -598,7 +599,6 @@ class AdminMyTripController extends Controller
 
     public function storeCopy(Request $request)
     {
-        dd($request);
         // Tạo bản sao logic tương tự như store
         $this->execute(function () use ($request) {
             $data = [
@@ -623,7 +623,7 @@ class AdminMyTripController extends Controller
                 'tour_type' => $request->tour_type,
                 'source' => $request->source,
                 'execution_phase' => $request->execution_phase,
-                'note' => $request->note . ' - Copy', // Thêm "- Copy" để phân biệt ghi chú
+                'note' => $request->note,
                 'overhead_costs' => $request->overhead_costs,
                 'individual_costs' => $request->individual_costs,
                 'tour_costs' => $request->tour_costs,
@@ -640,7 +640,7 @@ class AdminMyTripController extends Controller
 
             // TOUR FULL
             $dataTour = [
-                'name' => $request->tour_name, // Thêm "- Copy" để phân biệt tour
+                'name' => $request->tour_name,
                 'image_path' => $request->avatar_path,
                 'trip_id' => $myTrip->id
             ];
