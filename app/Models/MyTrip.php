@@ -12,6 +12,26 @@ class MyTrip extends Model
 
     public function tour()
     {
-        return $this->hasOne(Tour::class, 'trip_id');
+        return $this->hasOne(Tour::class, 'trip_id', 'id');
+    }
+
+    public function tourService()
+    {
+        return $this->hasMany(TourService::class, 'tour_id');
+    }
+
+    public function priceTypeServiceTrips()
+    {
+        return $this->hasMany(PriceTypeServiceTrip::class, 'trip_id', 'id');
+    }
+
+    public function includeServiceTrips()
+    {
+        return $this->hasMany(IncludeServiceTrip::class, 'trip_id', 'id');
+    }
+
+    public function surchargeTrips()
+    {
+        return $this->hasMany(SurchargeTrip::class, 'trip_id', 'id');
     }
 }
