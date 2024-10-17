@@ -388,9 +388,9 @@
                                     <button type="button">Xem yêu cầu gốc</button>
                                 </div>
                             </div>
-                            <div class="check-btn ta-center">
+                            {{-- <div class="check-btn ta-center">
                                 <button type="button">Nhân bản Tour Này</button>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="clm" style="--w-xl: 8;  --w-md: 6; --w-xs: 12;">
                             <div class="check-img" id="thumbnail-wrapper">
@@ -462,26 +462,6 @@
                         <div class="clm" style="--w-xl: 2; --w-md: 3; --w-xs: 12;">
                             <div class="list-tour-ad-left">
                                 <ul class="list-tour-ad-text" id="list-tour-day">
-                                    {{-- <li>
-                                        <span>Day 1</span>
-                                        [Web,Aug 28,2024]
-                                    </li>
-                                    <li>
-                                        <span>Day 1</span>
-                                        [Web,Aug 28,2024]
-                                    </li>
-                                    <li>
-                                        <span>Day 1</span>
-                                        [Web,Aug 28,2024]
-                                    </li>
-                                    <li>
-                                        <span>Day 1</span>
-                                        [Web,Aug 28,2024]
-                                    </li>
-                                    <li>
-                                        <span>Day 1</span>
-                                        [Web,Aug 28,2024]
-                                    </li> --}}
                                 </ul>
                                 <div class="check-btn ta-center btn-add-day">
                                     <button type="button" class="">Thêm ngày</button>
@@ -646,26 +626,6 @@
                                                     </thead>
 
                                                     <tbody class="service-included-body">
-                                                        {{-- <tr>
-                                                            <td class="ta-center">-</td>
-                                                            <td>Xe riêng chỗ</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="ta-center">-</td>
-                                                            <td>Xe riêng chỗ</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="ta-center">-</td>
-                                                            <td>Xe riêng chỗ</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="ta-center">-</td>
-                                                            <td>Xe riêng chỗ</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="ta-center">-</td>
-                                                            <td>Xe riêng chỗ</td>
-                                                        </tr> --}}
                                                     </tbody>
 
 
@@ -771,7 +731,6 @@
                 </div>
                 <div class="custom-modal-footer">
                     <button type="button" class="custom-btn custom-btn-confirm">Xác nhận</button>
-                    {{-- <button class="custom-btn custom-btn-cancel">Hủy</button> --}}
                 </div>
             </div>
         </form>
